@@ -44,8 +44,11 @@
 	<property name="entityManagerFactory" ref="entityManagerFactory" />
 </bean>
 
-
-
+<bean id="intervenantDAO" class="utils.IntervenantDAO" />
+<bean id="interventionDAO" class="utils.InterventionDAO" />
+<bean id="MaterielDAO" class="utils.MaterielDAO" />
+<bean id="ClientDAO" class="utils.ClientDAO" />
+<bean id="StatutDAO" class="utils.StatutDAO" />
 
 <tx:annotation-driven transaction-manager="transactionManager" />
 

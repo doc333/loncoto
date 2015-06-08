@@ -9,12 +9,34 @@
 <link href="./css/styles.css" rel="stylesheet" type="text/css"/> 
 </h:head>
 <h:body>
-<h1 class="title">SUPER CMS</h1>
+<h1 class="title">Loncoto</h1>
 <p>
-<b>le cms du futur</b> 
+<b>Administration des interventions</b> 
 </p>
 <div align="center">
 <h:form>
+<<<<<<< HEAD
+=======
+
+<table border="1" >
+	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
+	<ui:repeat var="i"  value="#{listeBean.interventions}">
+	<tr>
+		<td>#{i.codeIntervention}</td>
+		<td>#{i.datePrevu}</td>
+		<td>#{i.commentaire}</td>
+		<td>
+			<h:commandButton value="editer" action="#{editBean.editIntervention}">
+				<f:param name="iid" value="#{i.id}" />
+			</h:commandButton>
+		</td>
+	</tr>
+	</ui:repeat>
+</table>
+
+</h:panelGroup>
+<h:commandButton value="Ajouter intervention" action="#{editBean.createIntervention}"/>
+>>>>>>> 8981baa30fd1468006134a0666ae2a22c6f3a032
 
 </h:form>
 </div>

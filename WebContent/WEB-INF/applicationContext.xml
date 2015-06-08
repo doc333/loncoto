@@ -44,12 +44,6 @@
 	<property name="entityManagerFactory" ref="entityManagerFactory" />
 </bean>
 
-<bean id="contentDAO" class="utils.ContentDAO" />
-<bean id="imageDAO" class="utils.ImageDAO" />
-<bean id="tagDAO" class="utils.TagDAO" />
-<bean id="documentDAO" class="utils.DocumentDAO" />
-<bean id="auteurDAO" class="utils.AuteurDAO" />
-
 
 
 

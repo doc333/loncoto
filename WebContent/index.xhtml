@@ -14,30 +14,30 @@
 <b>Administration des interventions</b> 
 </p>
 <div align="center">
-<h:form>
+<!-- <h:form> -->
 
 
-<table border="1" >
-	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
-	<ui:repeat var="i"  value="#{listeBean.interventions}">
-	<tr>
-		<td>#{i.codeIntervention}</td>
-		<td>#{i.datePrevu}</td>
-		<td>#{i.commentaire}</td>
-		<td>
-			<h:commandButton value="editer" action="#{editBean.editIntervention}">
-				<f:param name="iid" value="#{i.id}" />
-			</h:commandButton>
-		</td>
-	</tr>
-	</ui:repeat>
-</table>
+<!-- <table border="1" > -->
+<!-- 	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr> -->
+<!-- 	<ui:repeat var="i"  value="#{listeBean.interventions}"> -->
+<!-- 	<tr> -->
+<!-- 		<td>#{i.codeIntervention}</td> -->
+<!-- 		<td>#{i.datePrevu}</td> -->
+<!-- 		<td>#{i.commentaire}</td> -->
+<!-- 		<td> -->
+<!-- 			<h:commandButton value="editer" action="#{editBean.editIntervention}"> -->
+<!-- 				<f:param name="iid" value="#{i.id}" /> -->
+<!-- 			</h:commandButton> -->
+<!-- 		</td> -->
+<!-- 	</tr> -->
+<!-- 	</ui:repeat> -->
+<!-- </table> -->
 
-</h:panelGroup>
-<h:commandButton value="Ajouter intervention" action="#{editBean.createIntervention}"/>
+<!-- </h:panelGroup> -->
+<!-- <h:commandButton value="Ajouter intervention" action="#{editBean.createIntervention}"/> -->
 
 
-</h:form>
+<!-- </h:form> -->
 </div>
 <hr style="margin-top: 100px"/>
 </h:body></html>

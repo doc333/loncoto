@@ -9,38 +9,31 @@
 <link href="./css/styles.css" rel="stylesheet" type="text/css"/> 
 </h:head>
 <h:body>
-<h1 class="title">SUPER CMS</h1>
+<h1 class="title">Loncoto</h1>
 <p>
-<b>le cms du futur</b> 
+<b>Administration des interventions</b> 
 </p>
 <div align="center">
 <h:form>
-<h:selectOneMenu value="#{listeBean.tagID}" >
-	<f:selectItems value="#{listeBean.tags}"
-					var="t"
-	 				itemValue="#{t.ID}"
-	 				itemLabel="#{t.nom}" />
-	<f:ajax render="listecontent" listener="#{listeBean.filterCat}" />
-</h:selectOneMenu><br />
-<h:panelGroup id="listecontent">
+
 <table border="1" >
-	<tr><th>titre</th><th>type</th><th>actions</th></tr>
-	<ui:repeat var="c"  value="#{listeBean.contents}">
+	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
+	<ui:repeat var="i"  value="#{listeBean.interventions}">
 	<tr>
-		<td>#{c.name}</td>
-		<td>#{c.type}</td>
+		<td>#{i.codeIntervention}</td>
+		<td>#{i.datePrevu}</td>
+		<td>#{i.commentaire}</td>
 		<td>
-		<h:commandButton value="editer" action="#{editBean.editContent}">
-			<f:param name="cid" value="#{c.ID}" />
-			<f:param name="ctype" value="#{c.type}" />
-		</h:commandButton>
+			<h:commandButton value="editer" action="#{editBean.editIntervention}">
+				<f:param name="iid" value="#{i.id}" />
+			</h:commandButton>
 		</td>
 	</tr>
 	</ui:repeat>
 </table>
+
 </h:panelGroup>
-<h:commandButton value="creer image" action="#{editBean.createImage}"/>
-<h:commandButton value="creer document" action="#{editBean.createDocument}" />
+<h:commandButton value="Ajouter intervention" action="#{editBean.createIntervention}"/>
 
 </h:form>
 </div>

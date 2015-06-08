@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+<title>Menu</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<h1 class="title">SUPER CMS</h1>
+<p>
+<b>le cms du futur</b> 
+</p>
+<div align="center">
+<h:form>
+<h:selectOneMenu value="#{listeBean.tagID}" >
+	<f:selectItems value="#{listeBean.tags}"
+					var="t"
+	 				itemValue="#{t.ID}"
+	 				itemLabel="#{t.nom}" />
+	<f:ajax render="listecontent" listener="#{listeBean.filterCat}" />
+</h:selectOneMenu><br />
+<h:panelGroup id="listecontent">
+<table border="1" >
+	<tr><th>titre</th><th>type</th><th>actions</th></tr>
+	<ui:repeat var="c"  value="#{listeBean.contents}">
+	<tr>
+		<td>#{c.name}</td>
+		<td>#{c.type}</td>
+		<td>
+		<h:commandButton value="editer" action="#{editBean.editContent}">
+			<f:param name="cid" value="#{c.ID}" />
+			<f:param name="ctype" value="#{c.type}" />
+		</h:commandButton>
+		</td>
+	</tr>
+	</ui:repeat>
+</table>
+</h:panelGroup>
+<h:commandButton value="creer image" action="#{editBean.createImage}"/>
+<h:commandButton value="creer document" action="#{editBean.createDocument}" />
+
+</h:form>
+</div>
+<hr style="margin-top: 100px"/>
+</h:body></html>

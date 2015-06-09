@@ -46,14 +46,14 @@ public class ArticleDAO implements IArticleDAO {
 
 	@Transactional
 	public Article findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Article.class, id);
 	}
 
 	@Transactional
 	public Article findSFamilleByArticleId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("select a from Article as a"
+				+ "where a.articleEnfant IS NULL",
+				Article.class).getSingleResult();
 	}
 
 	@Transactional

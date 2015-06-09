@@ -14,7 +14,7 @@ public class Intervention {
 	private Date datePrevu;
 	private Date dateReel;
 	private String commentaire;
-	private Statut status;
+	private Statut statut;
 	private Materiel materiel;
 	private Intervenant intervenant;
 	
@@ -23,8 +23,8 @@ public class Intervention {
 	public String toString() {
 		return "Intervention [id=" + id + ", codeIntervention="
 				+ codeIntervention + ", datePrevu=" + datePrevu + ", dateReel="
-				+ dateReel + ", commentaire=" + commentaire + ", status="
-				+ status + ", materiel=" + materiel + ", intervenant="
+				+ dateReel + ", commentaire=" + commentaire + ", statut="
+				+ statut + ", materiel=" + materiel + ", intervenant="
 				+ intervenant + "]";
 	}
 	
@@ -33,7 +33,7 @@ public class Intervention {
 	}
 	
 	public Intervention(int id, String codeIntervention, Date datePrevu,
-			Date dateReel, String commentaire, Statut status,
+			Date dateReel, String commentaire, Statut statut,
 			Materiel materiel, Intervenant intervenant) {
 		super();
 		this.id = id;
@@ -41,7 +41,7 @@ public class Intervention {
 		this.datePrevu = datePrevu;
 		this.dateReel = dateReel;
 		this.commentaire = commentaire;
-		this.status = status;
+		this.statut = statut;
 		this.materiel = materiel;
 		this.intervenant = intervenant;
 	}
@@ -72,11 +72,11 @@ public class Intervention {
 		this.dateReel = dateReel;
 	}
 	@ManyToOne
-	public Statut getStatus() {
-		return status;
+	public Statut getstatut() {
+		return statut;
 	}
-	public void setStatus(Statut status) {
-		this.status = status;
+	public void setstatut(Statut statut) {
+		this.statut = statut;
 	}
 	public String getCommentaire() {
 		return commentaire;

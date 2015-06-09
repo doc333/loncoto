@@ -64,8 +64,13 @@ public class ArticleDAO implements IArticleDAO {
 
 	@Transactional
 	public Article save(Article article) {
-		// TODO Auto-generated method stub
-		return null;
+		if (article.getId() > 0) {
+			article = em.merge(article);
+		}
+		else {
+			em.persist(article);
+		}
+		return article;
 	}
 
 }

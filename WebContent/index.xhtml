@@ -19,13 +19,13 @@
 
 <table border="1" >
 	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
-	<ui:repeat var="i"  value="#{listeBean.interventions}">
+	<ui:repeat var="i"  value="#{listIntervention.interventions}">
 	<tr>
 		<td>#{i.codeIntervention}</td>
 		<td>#{i.datePrevu}</td>
 		<td>#{i.commentaire}</td>
 		<td>
-			<h:commandButton value="editer" action="#{editBean.editIntervention}">
+			<h:commandButton value="editer" action="#{editIntervention.editIntervention}">
 				<f:param name="iid" value="#{i.id}" />
 			</h:commandButton>
 		</td>
@@ -33,8 +33,7 @@
 	</ui:repeat>
 </table>
 
-</h:panelGroup>
-<h:commandButton value="Ajouter intervention" action="#{editBean.createIntervention}"/>
+<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/>
 
 
 </h:form>

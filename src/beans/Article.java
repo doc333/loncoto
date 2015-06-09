@@ -1,11 +1,13 @@
 package beans;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -17,6 +19,26 @@ public class Article {
 	private String description;
 	private Set<Materiel> materiels;
 	
+	private Article articleParent;
+	private List<Article> articleEnfant;
+	
+	@OneToMany(mappedBy="articleParent")
+	public List<Article> getArticleEnfant() {
+		return articleEnfant;
+	}
+
+	public void setArticleEnfant(List<Article> articleEnfant) {
+		this.articleEnfant = articleEnfant;
+	}
+	
+	@ManyToOne
+	public Article getArticleParent() {
+		return articleParent;
+	}
+	
+	public void setArticleParent(Article articleParent) {
+		this.articleParent = articleParent;
+	}
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="article")

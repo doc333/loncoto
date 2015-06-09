@@ -16,16 +16,7 @@ public class Materiel {
 	private Article article;
 	private Salle salle;
 	private Set<Intervention> interventions;
-	
-	
-	public String getNumSerie() {
-		return numSerie;
-	}
-
-	public void setNumSerie(String numSerie) {
-		this.numSerie = numSerie;
-	}
-	
+		
 	@OneToMany
 	public Set<Intervention> getInterventions() {
 		if(interventions == null){
@@ -45,14 +36,15 @@ public class Materiel {
 	}
 	
 	public Materiel(){
-		this(0, new Article(), new Salle(), new HashSet<Intervention>());
+		this(0, "", new Article(), new Salle(), new HashSet<Intervention>());
 	}
 	
 	
-	public Materiel(int id, Article article, Salle salle,
+	public Materiel(int id, String numSerie, Article article, Salle salle,
 			Set<Intervention> interventions) {
 		super();
 		this.id = id;
+		this.numSerie = numSerie;
 		this.article = article;
 		this.salle = salle;
 		this.interventions = interventions;
@@ -80,5 +72,12 @@ public class Materiel {
 		this.salle = salle;
 	}
 	
+	public String getNumSerie() {
+		return numSerie;
+	}
+
+	public void setNumSerie(String numSerie) {
+		this.numSerie = numSerie;
+	}
 	
 }

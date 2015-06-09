@@ -23,15 +23,15 @@
 	<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
 </h:inputHidden>
 Commentaire: <h:inputText value="#{editIntervention.intervention.commentaire}"/><br />
-<!-- Statut: <h:selectOneMenu value="#{editIntervention.intervention.statut.id}"> -->
-<!-- 	<f:selectItems value="#{editIntervention.intervention.statut}" var="s" itemValue="#{s.id}" itemLabel="#{s.label}" /> -->
-<!-- </h:selectOneMenu><br /> -->
-<!-- Materiel: <h:selectOneMenu value="#{editIntervention.intervention.materiel.id}"> -->
-<!-- 	<f:selectItems value="#{editIntervention.intervention.materiel}" var="m" itemValue="#{m.id}" itemLabel="#{m.numSerie}" /> -->
-<!-- </h:selectOneMenu><br /> -->
-<!-- Intervenant: <h:selectOneMenu value="#{editIntervention.intervenant.id}"> -->
-<!-- 	<f:selectItems value="#{editIntervention.intervention.intervenant}" var="in" itemValue="#{in.id}" itemLabel="#{in.nom}" /> -->
-<!-- </h:selectOneMenu><br /> -->
+Statut: <h:selectOneMenu value="#{editIntervention.intervention.statut.id}">
+	<f:selectItems value="#{editIntervention.intervention.statut}" var="s" itemValue="#{s.id}" itemLabel="#{s.label}" />
+</h:selectOneMenu><br />
+Materiel: <h:selectOneMenu value="#{editIntervention.intervention.materiel.id}">
+	<f:selectItems value="#{editIntervention.intervention.materiel}" var="m" itemValue="#{m.id}" itemLabel="#{m.numSerie}" />
+</h:selectOneMenu><br />
+Intervenant: <h:selectOneMenu value="#{editIntervention.intervenant.id}">
+	<f:selectItems value="#{editIntervention.intervention.intervenant}" var="in" itemValue="#{in.id}" itemLabel="#{in.nom}" />
+</h:selectOneMenu><br />
 
 <h:commandButton value="sauver" action="#{editIntervention.saveIntervention}" />
 </h:form>

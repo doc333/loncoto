@@ -49,6 +49,7 @@
 <bean id="MaterielDAO" class="utils.MaterielDAO" />
 <bean id="ClientDAO" class="utils.ClientDAO" />
 <bean id="StatutDAO" class="utils.StatutDAO" />
+<bean id="ArticleDAO" class="utils.ArticleDAO" />
 
 <tx:annotation-driven transaction-manager="transactionManager" />
 

@@ -12,6 +12,14 @@ import javax.persistence.OneToMany;
 @Entity
 public class Materiel {
 	private int id;
+	private String numSerie;
+	public String getNumSerie() {
+		return numSerie;
+	}
+
+	public void setNumSerie(String numSerie) {
+		this.numSerie = numSerie;
+	}
 	private Article article;
 	private Salle salle;
 	private Set<Intervention> interventions;

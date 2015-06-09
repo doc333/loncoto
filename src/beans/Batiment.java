@@ -17,6 +17,7 @@ public class Batiment {
 	private Site site;
 	private Set<Etage> etages;
 	
+	@JsonIgnore
 	@OneToMany
 	public Set<Etage> getEtages() {
 		if(etages == null){

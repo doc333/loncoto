@@ -2,7 +2,10 @@ package jsf2;
 
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+
+import org.springframework.stereotype.Component;
 
 import beans.Intervenant;
 import beans.Intervention;
@@ -13,6 +16,8 @@ import utils.IInterventionDAO;
 import utils.IMaterielDAO;
 import utils.IStatutDAO;
 
+@Component
+@ManagedBean
 public class EditIntervention {
 	private IInterventionDAO interventionDAO;
 	public IInterventionDAO getInterventionDAO() {
@@ -90,5 +95,15 @@ public class EditIntervention {
 		setIntervention(getInterventionDAO().findById(iid));
 		
 		return "editIntervention";
+	}
+	
+	public String createIntervention() {
+		setIntervention(new Intervention());
+		return "editIntervention";
+	}
+	
+	public String saveIntervention() {
+		getInterventionDAO().save(intervention);
+		return "index";
 	}
 }

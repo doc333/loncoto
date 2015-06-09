@@ -46,9 +46,14 @@
 
 <bean id="intervenantDAO" class="utils.IntervenantDAO" />
 <bean id="interventionDAO" class="utils.InterventionDAO" />
-<bean id="MaterielDAO" class="utils.MaterielDAO" />
-<bean id="ClientDAO" class="utils.ClientDAO" />
-<bean id="StatutDAO" class="utils.StatutDAO" />
+<bean id="materielDAO" class="utils.MaterielDAO" />
+<bean id="clientDAO" class="utils.ClientDAO" />
+<bean id="statutDAO" class="utils.StatutDAO" />
+<bean id="articleDAO" class="utils.ArticleDAO" />
+<bean id="salleDAO" class="utils.SalleDAO" />
+<bean id="batimentDAO" class="utils.BatimentDAO" />
+<bean id="siteDAO" class="utils.SiteDAO" />
+<bean id="etageDAO" class="utils.EtageDAO" />
 
 <tx:annotation-driven transaction-manager="transactionManager" />
 

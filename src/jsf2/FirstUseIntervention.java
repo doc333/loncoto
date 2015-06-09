@@ -102,17 +102,21 @@ public class FirstUseIntervention {
 			si.setClient(c);;
 			si.setLatitude("654151" + i);
 			si.setLongitude("65484" + i);
-			b.setSite(si);
 			
+			b.setSite(si);
 			b.setCodeBatiment("Batiment " + i);
+			
 			e.setBatiment(b);
 			e.setCodeEtage("Etage " + i);
+			
 			s.setEtage(e);
+			
 			a.setDescription("Super article " + i);
 			a.setNom("Article " + i);
 			
 			m.setArticle(a);
 			m.setSalle(s);
+			
 			intervenant.setCodeIntervenant("Intervenant " + i);
 			intervenant.setNom("GIRARD " + i);
 			intervention.setIntervenant(intervenant);

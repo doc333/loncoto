@@ -10,8 +10,7 @@ public interface IArticleDAO {
 	public List<Article> findAllFamille();
 	
 	public Article findById(int id);
-	public Article findSFamilleByArticleId(int id);
-	public Article findFamilleByArticleId(int id);
+	public List<Article> findArticleByFamilleId(int id);
 	
 	public Article save(Article article);
 }

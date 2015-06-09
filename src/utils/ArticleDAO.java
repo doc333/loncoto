@@ -2,8 +2,10 @@ package utils;
 
 import java.util.List;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,18 +54,14 @@ public class ArticleDAO implements IArticleDAO {
 	public Article findById(int id) {
 		return em.find(Article.class, id);
 	}
-
+	
 	@Transactional
-	public Article findSFamilleByArticleId(int id) {
-		return em.createQuery("select a from Article as a"
-				+ " where a.articleEnfant.id = ",
-				Article.class).getSingleResult();
-	}
-
-	@Transactional
-	public Article findFamilleByArticleId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Article> findArticleByFamilleId(int id) {
+		TypedQuery<Article> q = em.createQuery("select ae from Article as a"
+				+ " left join a.articleEnfant as ae"
+				+ " where a.id = :id", Article.class);
+		q.setParameter(id, ":id");
+		return q.getResultList();
 	}
 
 	@Transactional
@@ -76,5 +74,6 @@ public class ArticleDAO implements IArticleDAO {
 		}
 		return article;
 	}
+	
 
 }

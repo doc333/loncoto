@@ -18,10 +18,10 @@
 <h:inputHidden value="#{editIntervention.intervention.id}" />
 Date prévue: <h:inputText value="#{editIntervention.intervention.datePrevu}" >
 	<f:convertDateTime pattern="yyyy-MM-dd" />
-</h:inputText>
+</h:inputText><br />
 Date réel: <h:inputText value="#{editIntervention.intervention.dateReel}" >
 	<f:convertDateTime pattern="yyyy-MM-dd"/>
-</h:inputText>
+</h:inputText><br />
 Commentaire: <h:inputText value="#{editIntervention.intervention.commentaire}"/><br />
 Statut: <h:selectOneMenu value="#{editIntervention.intervention.statut.id}">
 	<f:selectItems value="#{editIntervention.listStatut}" var="s" itemValue="#{s.id}" itemLabel="#{s.label}" />

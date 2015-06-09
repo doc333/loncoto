@@ -13,6 +13,11 @@ import javax.persistence.OneToMany;
 public class Materiel {
 	private int id;
 	private String numSerie;
+	private Article article;
+	private Salle salle;
+	private Set<Intervention> interventions;
+	
+	
 	public String getNumSerie() {
 		return numSerie;
 	}
@@ -20,9 +25,6 @@ public class Materiel {
 	public void setNumSerie(String numSerie) {
 		this.numSerie = numSerie;
 	}
-	private Article article;
-	private Salle salle;
-	private Set<Intervention> interventions;
 	
 	@OneToMany
 	public Set<Intervention> getInterventions() {

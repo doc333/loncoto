@@ -72,10 +72,10 @@ public class Intervention {
 		this.dateReel = dateReel;
 	}
 	@ManyToOne
-	public Statut getstatut() {
+	public Statut getStatut() {
 		return statut;
 	}
-	public void setstatut(Statut statut) {
+	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
 	public String getCommentaire() {

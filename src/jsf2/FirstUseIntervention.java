@@ -1,5 +1,6 @@
 package jsf2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -63,6 +64,8 @@ public class FirstUseIntervention {
 	public String generateInterventions()
 	{
 		
+		statuts = new ArrayList<Statut>();
+		
 		Statut s1 = new Statut();
 		s1.setLabel("En cours");
 		Statut s2 = new Statut();
@@ -70,9 +73,9 @@ public class FirstUseIntervention {
 		Statut s3 = new Statut();
 		s3.setLabel("Fini");
 		
-		getStatutDAO().save(s1);
-		getStatutDAO().save(s2);
-		getStatutDAO().save(s3);
+		s1 = getStatutDAO().save(s1);
+		s2 = getStatutDAO().save(s2);
+		s3 = getStatutDAO().save(s3);
 		
 		statuts.add(s1);
 		statuts.add(s2);
@@ -115,7 +118,8 @@ public class FirstUseIntervention {
 			intervention.setIntervenant(intervenant);
 			intervention.setMateriel(m);
 			intervention.setCodeIntervention("Intervention " + i);
-			intervention.setstatut(statuts.get((int) Math.random() * (statuts.size()) - 1));
+			System.out.println("--------------------------------------------");
+			intervention.setStatut(statuts.get((int) Math.random() * (statuts.size() -1)));
 			
 			c = getClientDAO().save(c);
 			si = getSiteDAO().save(si);

@@ -1,5 +1,7 @@
 package jsf2;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,6 +35,10 @@ public class FirstUseIntervention {
 	private IBatimentDAO batimentDAO;
 	private ISiteDAO siteDAO;
 	private IEtageDAO etageDAO;
+	
+	private List<Statut> statuts;
+	
+	
 	public IArticleDAO getArticleDAO() {return articleDAO;}
 	public void setArticleDAO(IArticleDAO articleDAO) {	this.articleDAO = articleDAO;}
 	public IClientDAO getClientDAO() {	return clientDAO;}
@@ -54,9 +60,26 @@ public class FirstUseIntervention {
 	public IEtageDAO getEtageDAO() {return etageDAO;}
 	public void setEtageDAO(IEtageDAO etageDAO) {this.etageDAO = etageDAO;}
 	
-	
 	public String generateInterventions()
 	{
+		
+		Statut s1 = new Statut();
+		s1.setLabel("En cours");
+		Statut s2 = new Statut();
+		s2.setLabel("Dépassé");
+		Statut s3 = new Statut();
+		s3.setLabel("Fini");
+		
+		getStatutDAO().save(s1);
+		getStatutDAO().save(s2);
+		getStatutDAO().save(s3);
+		
+		statuts.add(s1);
+		statuts.add(s2);
+		statuts.add(s3);
+		
+		
+		
 		for(int i = 0; i <= 100; i++)
 		{
 			System.out.println("génération");
@@ -92,6 +115,7 @@ public class FirstUseIntervention {
 			intervention.setIntervenant(intervenant);
 			intervention.setMateriel(m);
 			intervention.setCodeIntervention("Intervention " + i);
+			intervention.setstatut(statuts.get((int) Math.random() * (statuts.size()) - 1));
 			
 			c = getClientDAO().save(c);
 			si = getSiteDAO().save(si);
@@ -100,6 +124,7 @@ public class FirstUseIntervention {
 			s = getSalleDAO().save(s);
 			a = getArticleDAO().save(a);
 			m = getMaterielDAO().save(m);
+			
 			intervenant = getIntervenantDAO().save(intervenant);
 			intervention = getInterventionDAO().save(intervention);
 		}

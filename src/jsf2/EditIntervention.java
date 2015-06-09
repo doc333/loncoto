@@ -85,6 +85,7 @@ public class EditIntervention {
 	public void setListIntervenant(List<Intervenant> listIntervenant) {
 		this.listIntervenant = listIntervenant;
 	}
+	
 	public String editIntervention() {
 		int iid = Integer.parseInt(FacesContext
 				.getCurrentInstance()

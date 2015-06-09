@@ -16,12 +16,12 @@
 <div align="center">
 <h:form>
 <h:inputHidden value="#{editIntervention.intervention.id}" />
-<h:inputHidden value="#{editIntervention.intervention.datePrevu}" >
-	<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
-</h:inputHidden>
-<h:inputHidden value="#{editIntervention.intervention.dateReel}" >
-	<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" />
-</h:inputHidden>
+Date prévue: <h:inputText value="#{editIntervention.intervention.datePrevu}" >
+	<f:convertDateTime pattern="yyyy-MM-dd" />
+</h:inputText>
+Date réel: <h:inputText value="#{editIntervention.intervention.dateReel}" >
+	<f:convertDateTime pattern="yyyy-MM-dd"/>
+</h:inputText>
 Commentaire: <h:inputText value="#{editIntervention.intervention.commentaire}"/><br />
 Statut: <h:selectOneMenu value="#{editIntervention.intervention.statut.id}">
 	<f:selectItems value="#{editIntervention.listStatut}" var="s" itemValue="#{s.id}" itemLabel="#{s.label}" />

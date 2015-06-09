@@ -114,6 +114,7 @@ public class FirstUseIntervention {
 			a.setDescription("Super article " + i);
 			a.setNom("Article " + i);
 			
+			m.setNumSerie("mat" + i);
 			m.setArticle(a);
 			m.setSalle(s);
 			

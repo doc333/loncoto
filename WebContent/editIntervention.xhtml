@@ -24,13 +24,13 @@
 </h:inputHidden>
 Commentaire: <h:inputText value="#{editIntervention.intervention.commentaire}"/><br />
 Statut: <h:selectOneMenu value="#{editIntervention.intervention.statut.id}">
-	<f:selectItems value="#{editIntervention.intervention.statut}" var="s" itemValue="#{s.id}" itemLabel="#{s.label}" />
+	<f:selectItems value="#{editIntervention.listStatut}" var="s" itemValue="#{s.id}" itemLabel="#{s.label}" />
 </h:selectOneMenu><br />
 Materiel: <h:selectOneMenu value="#{editIntervention.intervention.materiel.id}">
-	<f:selectItems value="#{editIntervention.intervention.materiel}" var="m" itemValue="#{m.id}" itemLabel="#{m.numSerie}" />
+	<f:selectItems value="#{editIntervention.listMateriel}" var="m" itemValue="#{m.id}" itemLabel="#{m.numSerie}" />
 </h:selectOneMenu><br />
-Intervenant: <h:selectOneMenu value="#{editIntervention.intervenant.id}">
-	<f:selectItems value="#{editIntervention.intervention.intervenant}" var="in" itemValue="#{in.id}" itemLabel="#{in.nom}" />
+Intervenant: <h:selectOneMenu value="#{editIntervention.intervention.intervenant.id}">
+	<f:selectItems value="#{editIntervention.listIntervenant}" var="in" itemValue="#{in.id}" itemLabel="#{in.nom}" />
 </h:selectOneMenu><br />
 
 <h:commandButton value="sauver" action="#{editIntervention.saveIntervention}" />

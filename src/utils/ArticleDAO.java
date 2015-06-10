@@ -2,7 +2,6 @@ package utils;
 
 import java.util.List;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -28,8 +27,8 @@ public class ArticleDAO implements IArticleDAO {
 		return em.createQuery("select distinct(a) from Article as a "
 				+ " right join a.articleParent ap "
 				+ " right join ap.articleParent app "
-				+ " where app is not null"
-				,Article.class).getResultList();
+				+ " where app is not null",
+				Article.class).getResultList();
 	}
 
 	@Transactional

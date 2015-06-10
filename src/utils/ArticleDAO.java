@@ -21,7 +21,6 @@ public class ArticleDAO implements IArticleDAO {
 		this.em = em;
 	}
 	
-	
 	@Transactional
 	public List<Article> findAll() {
 		return em.createQuery("select distinct(a) from Article as a "

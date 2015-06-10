@@ -103,13 +103,13 @@ public class EditMateriel {
 				.getCurrentInstance()
 				.getExternalContext()
 				.getRequestParameterMap()
-				.get("iid"));
+				.get("mid"));
 		
 		setMateriel(getMaterielDAO().findById(id));
 		
 		return "editMateriel";
 	}
-	
+
 	public String createMateriel() {
 		setMateriel(new Materiel());
 		return "editMateriel";

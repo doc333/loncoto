@@ -12,24 +12,9 @@
 <h:body>
 <h1 class="title">Loncoto</h1>
 <p>
-<b>Administration des interventions</b> 
+<b>Administration des articles</b> 
 </p>
 <div align="center">
-
-<p>Email: ${utilisateur.email}</p>
-
-<h:form>
-	<h:inputText name="email" value="#{connectUtilisateur.email}"/>
-	<h:inputSecret name="password" value="#{connectUtilisateur.password}"/>
-	
-	<h:commandButton value="Se connecter" action="#{connectUtilisateur.connect}"/>
-	<br/>	 
-	<h:commandButton value="Se déconnecter" action="#{connectUtilisateur.disconnect}"/>
-	<br/>	
-</h:form>
-
-<h:form>
-
 
 <table border="1" >
 	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
@@ -49,12 +34,16 @@
 </table>
 
 
-<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/>
-<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
-<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
-<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
-<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
-<h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
+<!-- <c:if test="${empty '#{listIntervention.interventions}'}"> -->
+	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}"/>
+<!-- </c:if> -->
+<!-- <c:otherwise> -->
+	<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
+	<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
+	<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
+	<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
+	<h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
+<!-- </c:otherwise> -->
 </h:form>
 </div>
 <hr style="margin-top: 100px"/>

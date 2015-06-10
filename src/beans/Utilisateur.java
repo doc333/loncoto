@@ -15,28 +15,24 @@ public class Utilisateur {
 	private int id;
 	private String email;
 	private String password;
-	private Client client;
 	private Intervenant intervenant;
 	
-	
 	public Utilisateur(){
-		this(0, "", "", new Client(), new Intervenant());
+		this(0, "", "", new Intervenant());
 	}
 	
-	public Utilisateur(int id, String email, String password, Client client,
-			Intervenant intervenant) {
+	public Utilisateur(int id, String email, String password, Intervenant intervenant) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
-		this.client = client;
 		this.intervenant = intervenant;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", email=" + email + ", client="
-				+ client + ", intervenant=" + intervenant + "]";
+		return "Utilisateur [id=" + id + ", email=" + email + ", password="
+				+ password + ", intervenant=" + intervenant + "]";
 	}
 
 	@Id @GeneratedValue	
@@ -58,13 +54,6 @@ public class Utilisateur {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	@OneToOne
-	public Client getClient() {
-		return client;
-	}
-	public void setClient(Client client) {
-		this.client = client;
 	}
 	@OneToOne
 	public Intervenant getIntervenant() {

@@ -14,6 +14,7 @@
 <p>
 <b>Administration des interventions</b> 
 </p>
+
 <div align="center">
 
 <h:form>
@@ -31,6 +32,8 @@
 </h:form>
 
 <h:form rendered="#{not empty utilisateur}">
+<h:commandButton value="Liste matériels" action="listMateriel"/><br/>
+<h:commandButton value="Liste sites" action="listSite"/><br/>
 <table border="1" >
 	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
 	<ui:repeat var="i"  value="#{listIntervention.interventions}">
@@ -47,6 +50,7 @@
 	</tr>
 	</ui:repeat>
 </table>
+
 
 
 <h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/>

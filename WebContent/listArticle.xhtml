@@ -15,35 +15,25 @@
 <b>Administration des articles</b> 
 </p>
 <div align="center">
-
+<h:form>
 <table border="1" >
-	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
-	<ui:repeat var="i"  value="#{listIntervention.interventions}">
+	<tr><th>Nom</th><th>Description</th><th>Parent</th><th>Actions</th></tr>
+	<ui:repeat var="a"  value="#{tableArticle.articles}">
 	<tr>
-		<td>#{i.codeIntervention}</td>
-		<td>#{i.datePrevu}</td>
-		<td>#{i.statut.label}</td>
-		<td>#{i.commentaire}</td>
+		<td>#{a.nom}</td>
+		<td>#{a.description}</td>
+		<td>#{a.articleParent.description}</td>
 		<td>
-			<h:commandButton value="editer" action="#{editIntervention.editIntervention}">
-				<f:param name="iid" value="#{i.id}" />
+			<h:commandButton value="editer" action="#{editArticle.editArticle}">
+				<f:param name="aid" value="#{a.id}" />
 			</h:commandButton>
 		</td>
 	</tr>
 	</ui:repeat>
 </table>
-
-
-<!-- <c:if test="${empty '#{listIntervention.interventions}'}"> -->
-	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}"/>
-<!-- </c:if> -->
-<!-- <c:otherwise> -->
-	<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
-	<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
 	<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
 	<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
 	<h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
-<!-- </c:otherwise> -->
 </h:form>
 </div>
 <hr style="margin-top: 100px"/>

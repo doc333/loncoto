@@ -19,7 +19,7 @@
 Marque + Numéro de série: <h:inputText value="#{editMateriel.materiel.numSerie}"/><br />
 
 Article : <h:selectOneMenu value="#{editMateriel.materiel.article.id}">
-	<f:selectItems value="#{editMateriel.listArticle}" var="a" itemValue="#{a.id}" itemLabel="#{a.nom}" />
+	<f:selectItems value="#{editMateriel.listArticle}" var="a" itemValue="#{a.id}" itemLabel="#{a.description}" />
 </h:selectOneMenu><br/>
 
 Batiment : <h:selectOneMenu value="#{editMateriel.batimentID}">

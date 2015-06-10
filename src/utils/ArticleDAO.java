@@ -23,9 +23,9 @@ public class ArticleDAO implements IArticleDAO {
 	
 	@Transactional
 	public List<Article> findAll() {
-		return em.createQuery("select distinct(a) from Article as a "
-				+ " right join a.articleParent ap "
-				+ " right join ap.articleParent app "
+		return em.createQuery("select a from Article as a"
+				+ " left join a.articleParent as ap"
+				+ " left join ap.articleParent as app"
 				+ " where app is not null",
 				Article.class).getResultList();
 	}
@@ -33,18 +33,18 @@ public class ArticleDAO implements IArticleDAO {
 	@Transactional
 	public List<Article> findAllSFamille() {
 		return em.createQuery("select distinct(a) from Article as a"
-				+ " right join a.articleParent ap "
-				+ " left join ap.articleParent app "
-				+ " where app is null "
-				+ " and ap is not null ",
+				+ " left join a.articleParent as ap"
+				+ " left join ap.articleParent as app"
+				+ " where app is null"
+				+ " and ap is not null",
 				Article.class).getResultList();
 	}
 
 	@Transactional
 	public List<Article> findAllFamille() {
 		return em.createQuery("select a from Article as a"
-				+ " left join ap.articleParent ap "
-				+ " where ap is null ",
+				+ " left join a.articleParent as ap"
+				+ " where ap is null",
 				Article.class).getResultList();
 	}
 

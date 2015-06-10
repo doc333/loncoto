@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-<title>Menu</title>
+<title>Loncoto</title>
 <link href="./css/styles.css" rel="stylesheet" type="text/css"/> 
 </h:head>
 <h:body>
@@ -16,6 +16,19 @@
 </p>
 
 <div align="center">
+
+<p>Email: ${utilisateur.email}</p>
+
+<h:form>
+	<h:inputText name="email" value="#{connectUtilisateur.email}"/>
+	<h:inputSecret name="password" value="#{connectUtilisateur.password}"/>
+	
+	<h:commandButton value="Se connecter" action="#{connectUtilisateur.connect}"/>
+	<br/>	 
+	<h:commandButton value="Se déconnecter" action="#{connectUtilisateur.disconnect}"/>
+	<br/>	
+</h:form>
+
 <h:form>
 
 <h:commandButton value="Liste matériels" action="listMateriel"/><br/>
@@ -38,16 +51,13 @@
 </table>
 
 
-<!-- <c:if test="${'#{listIntervention.interventions}' == 'null'}"> -->
-	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}"/>
-<!-- </c:if> -->
-<!-- <c:otherwise> -->
-	<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
-	<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
-	<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
-	<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
-	<h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
-<!-- </c:otherwise> -->
+
+<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/>
+<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
+<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
+<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
+<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
+<h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
 </h:form>
 </div>
 <hr style="margin-top: 100px"/>

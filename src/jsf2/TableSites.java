@@ -11,7 +11,7 @@ import utils.ISiteDAO;
 
 @Component
 @ManagedBean
-public class tableSites {
+public class TableSites {
 	private ISiteDAO siteDAO;
 	private List<Site> sites;
 	

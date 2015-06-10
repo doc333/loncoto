@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+<title>Menu</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/> 
+</h:head>
+<h:body>
+<h1 class="title">Loncoto</h1>
+<p>
+<b>Création de matériel</b> 
+</p>
+<div align="center">
+<h:form>
+<h:inputHidden value="#{editMateriel.materiel.id}" />
+Marque + Numéro de série: <h:inputText value="#{editMateriel.materiel.numSerie}"/><br />
+
+Article : <h:selectOneMenu value="#{editMateriel.materiel.article.id}">
+	<f:selectItems value="#{editMateriel.listArticle}" var="a" itemValue="#{a.id}" itemLabel="#{a.nom}" />
+</h:selectOneMenu><br/>
+
+Batiment : <h:selectOneMenu value="#{editMateriel.batimentID}">
+	<f:selectItems value="#{editMateriel.listBatiment}" var="b" itemValue="#{b.id}" itemLabel="#{b.codeBatiment}" />
+	<f:ajax render="updateEtage"/>
+</h:selectOneMenu><br/>
+
+<h:panelGroup id="updateEtage">
+Etage : <h:selectOneMenu value="#{editMateriel.etageID}">
+	<f:selectItems value="#{editMateriel.listEtage}" var="e" itemValue="#{e.id}" itemLabel="#{e.codeEtage}" />
+	<f:ajax render="updateSalle"/>
+</h:selectOneMenu><br/>
+</h:panelGroup>
+
+<h:panelGroup id="updateSalle">
+Salle : <h:selectOneMenu value="#{editMateriel.materiel.salle.id}">
+	<f:selectItems value="#{editMateriel.listSalle}" var="s" itemValue="#{s.id}" itemLabel="#{s.codeSalle}" />
+</h:selectOneMenu><br/>
+</h:panelGroup>
+
+<h:commandButton value="sauver" action="#{editMateriel.saveMateriel}" />
+</h:form>
+</div>
+<hr style="margin-top: 100px"/>
+</h:body></html>

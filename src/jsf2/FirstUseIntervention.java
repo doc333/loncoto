@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Component;
 
+import utils.ArticleDAO;
 import utils.IArticleDAO;
 import utils.IBatimentDAO;
 import utils.IClientDAO;
@@ -38,7 +39,10 @@ public class FirstUseIntervention {
 	private IEtageDAO etageDAO;
 	
 	private List<Statut> statuts;
-	
+	private List<Salle> salles;
+	private List<Intervenant> intervenants;
+	private List<Materiel> materiels;
+	private List<Article> articles;
 	
 	public IArticleDAO getArticleDAO() {return articleDAO;}
 	public void setArticleDAO(IArticleDAO articleDAO) {	this.articleDAO = articleDAO;}
@@ -63,8 +67,11 @@ public class FirstUseIntervention {
 	
 	public String generateInterventions()
 	{
+		System.out.println("génération");
 		
 		statuts = new ArrayList<Statut>();
+		salles = new ArrayList<Salle>();
+		intervenants = new ArrayList<Intervenant>();
 		
 		Statut s1 = new Statut();
 		s1.setLabel("En cours");
@@ -83,62 +90,156 @@ public class FirstUseIntervention {
 		
 		
 		
-		for(int i = 0; i <= 100; i++)
+		
+		for(int i = 1; i < 4; i++)
 		{
-			System.out.println("génération");
-			Intervention intervention = new Intervention();
-			Intervenant intervenant = new Intervenant();
-			Materiel m = new Materiel();
-			Article a = new Article();
-			Salle s = new Salle();
-			Etage e = new Etage();
-			Batiment b = new Batiment();
-			Site si = new Site();
 			Client c = new Client();
-			
-			c.setCodeClient("Client " + i);
-			c.setNom("IBM " + i);
-			
-			si.setClient(c);;
-			si.setLatitude("654151" + i);
-			si.setLongitude("65484" + i);
-			
-			b.setSite(si);
-			b.setCodeBatiment("Batiment " + i);
-			
-			e.setBatiment(b);
-			e.setCodeEtage("Etage " + i);
-			
-			s.setEtage(e);
-			
-			a.setDescription("Super article " + i);
-			a.setNom("Article " + i);
-			
-			m.setNumSerie("mat" + i);
-			m.setArticle(a);
-			m.setSalle(s);
-			
-			intervenant.setCodeIntervenant("Intervenant " + i);
-			intervenant.setNom("GIRARD " + i);
-			intervention.setIntervenant(intervenant);
-			intervention.setMateriel(m);
-			intervention.setCodeIntervention("Intervention " + i);
-			System.out.println("--------------------------------------------");
-			intervention.setStatut(statuts.get((int) Math.random() * (statuts.size() -1)));
+			c.setCodeClient(String.valueOf(i));
+			c.setNom("Girard" + i);
 			
 			c = getClientDAO().save(c);
-			si = getSiteDAO().save(si);
-			b = getBatimentDAO().save(b);
-			e = getEtageDAO().save(e);
-			s = getSalleDAO().save(s);
-			a = getArticleDAO().save(a);
-			m = getMaterielDAO().save(m);
+			
+			for(int j = 0; j < 4; j++)
+			{
+				Site si = new Site();
+				si.setLatitude(String.valueOf(getRandomNumber(-100, 100)));
+				si.setClient(c);
+				si = getSiteDAO().save(si);
+				
+				for(int k = 0; k < 3; k++)
+				{
+					Batiment b = new Batiment();
+					b.setSite(si);
+					b.setCodeBatiment(String.valueOf(k));
+					b = getBatimentDAO().save(b);
+					
+					
+					for(int l = 0; l < getRandomNumber(1, 7); l++)
+					{
+						Etage e = new Etage();
+						e.setBatiment(b);
+						e.setCodeEtage(String.valueOf(l));
+						
+						e = getEtageDAO().save(e);
+						
+						for(int m = 0; m < getRandomNumber(1, 30); m++)
+						{
+							Salle s = new Salle();
+							s.setEtage(e);
+							s.setCodeSalle(String.valueOf(m));
+							
+							s = getSalleDAO().save(s);
+							salles.add(s);
+						}
+					}
+				}			
+				
+			}
+		
+		}
+		
+		
+		for(int i = 1; i < 22; i++)
+		{
+			Intervenant intervenant = new Intervenant();
+			intervenant.setNom("IBM" + i);
+			intervenant.setCodeIntervenant(String.valueOf(i));
 			
 			intervenant = getIntervenantDAO().save(intervenant);
+			
+			intervenants.add(intervenant);
+		}
+		
+		
+		generateMateriels();
+		
+		for(int i = 0; i <= 100; i++)
+		{
+			Intervention intervention = new Intervention();
+			intervention.setIntervenant(intervenants.get(getRandomNumber(intervenants.size() - 1)));
+			intervention.setMateriel(materiels.get(getRandomNumber(materiels.size() - 1)));
+			intervention.setCodeIntervention("Intervention " + i);
+			intervention.setStatut(statuts.get(getRandomNumber(0, statuts.size() - 1)));
 			intervention = getInterventionDAO().save(intervention);
 		}
 		
 		return "index";
 	}
+	
+	
+	private int getRandomNumber(int max) 
+	{
+		return getRandomNumber(0, max);
+	}
+	
+	private int getRandomNumber(int min, int max) 
+	{
+		  return (int) (Math.random() * (max - min) + min);
+	}
+	
+	
+	private void generateMateriels()
+	{
+		generateArticles();
+		materiels = new ArrayList<Materiel>();
+		
+		
+		for(Article a: articles)
+		{
+			for(int i = 0; i < getRandomNumber(1, 20); i++)
+			{
+				Materiel m = new Materiel();
+				m.setArticle(a);
+				m.setNumSerie(String.valueOf(getRandomNumber(1, 1000)));
+				m.setSalle(salles.get(getRandomNumber(salles.size() - 1)));
+				m = getMaterielDAO().save(m);
+				materiels.add(m);
+			}
+		}
+	}
+	
+	private void generateArticles()
+	{
+		articles = new ArrayList<Article>();
+		
+		IArticleDAO dao = getArticleDAO();
+		
+		for(int i = 0; i < getRandomNumber(1, 10); i++)
+		{
+			Article a = new Article();
+			a.setDescription("Article " + i);
+			a.setNom(String.valueOf(i));
+			
+			a = dao.save(a);
+			
+			articles.add(a);
+			
+			for(int j = 0; j < getRandomNumber(20); j++)
+			{
+				Article sa = new Article();
+				sa.setArticleParent(a);
+				sa.setDescription("Sous Article " + j);
+				sa.setNom(String.valueOf(j));
+				
+				sa = dao.save(sa);
+				
+				articles.add(sa);
+				
+				for(int k = 0; k < getRandomNumber(30); k++)
+				{
+					Article ssa = new Article();
+					ssa.setArticleParent(sa);
+					ssa.setDescription("Sous sous article " + k);
+					ssa.setNom(String.valueOf(k));
+					
+					ssa = dao.save(ssa);
+					
+					articles.add(ssa);
+				}
+			}
+			
+		}
+	}
+	
 	
 }

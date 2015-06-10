@@ -40,8 +40,11 @@
 	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}"/>
 </c:if>
 <c:otherwise>
-	<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/>
-	<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/>
+	<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
+	<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
+	<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
+	<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
+	<h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
 </c:otherwise>
 
 </h:form>

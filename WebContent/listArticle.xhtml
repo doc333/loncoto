@@ -17,12 +17,12 @@
 <div align="center">
 <h:form>
 <table border="1" >
-	<tr><th>Nom</th><th>Description</th><th>Parent</th></tr>
-	<ui:repeat var="a"  value="#{listArticle.articles}">
+	<tr><th>Nom</th><th>Description</th><th>Parent</th><th>Actions</th></tr>
+	<ui:repeat var="a"  value="#{tableArticle.articles}">
 	<tr>
 		<td>#{a.nom}</td>
 		<td>#{a.description}</td>
-		<td>#{a.parentArticle.description}</td>
+		<td>#{a.articleParent.description}</td>
 		<td>
 			<h:commandButton value="editer" action="#{editArticle.editArticle}">
 				<f:param name="aid" value="#{a.id}" />

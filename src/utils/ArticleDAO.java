@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,27 +21,30 @@ public class ArticleDAO implements IArticleDAO {
 		this.em = em;
 	}
 	
-	
 	@Transactional
 	public List<Article> findAll() {
-		return em.createQuery("select distinct(a) from Article as a"
-				+ "right join a.articleEnfant as ae"
-				+ "where ae.articleEnfant IS NOT NULL",
+		return em.createQuery("select distinct(a) from Article as a "
+				+ " right join a.articleParent ap "
+				+ " right join ap.articleParent app "
+				+ " where app is not null",
 				Article.class).getResultList();
 	}
 
 	@Transactional
 	public List<Article> findAllSFamille() {
 		return em.createQuery("select distinct(a) from Article as a"
-				+ "right join a.articleEnfant as ae"
-				+ "where ae.articleEnfant IS NULL",
+				+ " right join a.articleParent ap "
+				+ " left join ap.articleParent app "
+				+ " where app is null "
+				+ " and ap is not null ",
 				Article.class).getResultList();
 	}
 
 	@Transactional
 	public List<Article> findAllFamille() {
 		return em.createQuery("select a from Article as a"
-				+ "where a.articleEnfant IS NULL",
+				+ " left join ap.articleParent ap "
+				+ " where ap is null ",
 				Article.class).getResultList();
 	}
 
@@ -48,18 +52,14 @@ public class ArticleDAO implements IArticleDAO {
 	public Article findById(int id) {
 		return em.find(Article.class, id);
 	}
-
+	
 	@Transactional
-	public Article findSFamilleByArticleId(int id) {
-		return em.createQuery("select a from Article as a"
-				+ "where a.articleEnfant IS NULL",
-				Article.class).getSingleResult();
-	}
-
-	@Transactional
-	public Article findFamilleByArticleId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Article> findArticleByFamilleId(int id) {
+		TypedQuery<Article> q = em.createQuery("select ae from Article as a"
+				+ " left join a.articleEnfant as ae"
+				+ " where a.id = :id", Article.class);
+		q.setParameter(id, ":id");
+		return q.getResultList();
 	}
 
 	@Transactional
@@ -72,5 +72,6 @@ public class ArticleDAO implements IArticleDAO {
 		}
 		return article;
 	}
+	
 
 }

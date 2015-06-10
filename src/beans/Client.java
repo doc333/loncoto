@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -53,8 +54,9 @@ public class Client {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
 	@JsonIgnore
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	public Set<Site> getSites() {
 		if(sites == null){
 			sites = new HashSet<Site>();

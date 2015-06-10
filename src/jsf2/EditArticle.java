@@ -25,12 +25,25 @@ public class EditArticle {
 	public void setArticle(Article article) {this.article = article;}
 	
 	private List<Article> sFamilles;
-	public List<Article> getSFamilles() {return sFamilles;}
-	public void setSFamilles(List<Article> sFamilles) {this.sFamilles = sFamilles;}
+	public List<Article> getsFamilles() {
+		int id = Integer.parseInt(getFamilleId());
+		sFamilles = getArticleDAO().findArticleByFamilleId(id);
+		return sFamilles;
+	}
+	public void setsFamilles(List<Article> sFamilles) {this.sFamilles = sFamilles;}
 	
 	private List<Article> familles;
 	public List<Article> getFamilles() {return familles;}
 	public void setFamilles(List<Article> familles) {this.familles = familles;}
+	
+	private String familleId;
+	public String getFamilleId() {
+		if (familleId == null) {
+			familleId = String.valueOf(familles.get(0).getId());
+		}
+		return familleId;
+	}
+	public void setFamilleId(String familleId) {this.familleId = familleId;}
 	
 	public String createArticle() {
 		setFamilles(getArticleDAO().findAllFamille());
@@ -56,5 +69,10 @@ public class EditArticle {
 		setType("Famille");
 		
 		return "editArticle";
+	}
+	
+	public String saveArticle() {
+		getArticleDAO().save(article);
+		return "listArticle";
 	}
 }

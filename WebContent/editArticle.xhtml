@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-<title>Menu</title>
+<title>Loncoto</title>
 <link href="./css/styles.css" rel="stylesheet" type="text/css"/> 
 </h:head>
 <h:body>
@@ -17,25 +17,39 @@
 <div align="center">
 <h:form>
 <table border="1" >
-	<c:if test="${ '#{editArticle.type}' == 'Article'}">
-		<h:selectOneMenu value="#{editArticle.article.articleParent.articleParent.id}" >
+<h:panelGroup id="Article" rendered="#{editArticle.type eq 'Article'}">
+	Famille: <h:selectOneMenu value="#{editArticle.familleId}" >
 			<f:selectItems value="#{editArticle.familles}"
 							var="f"
 			 				itemValue="#{f.id}"
-			 				itemLabel="#{f.nom}" />
-		</h:selectOneMenu><br />
-	</c:if>
-	<c:if test="${ '#{editArticle.type}' == 'SFamille'}">
-		<h:selectOneMenu value="#{editArticle.article.articleParent.id}" >
+			 				itemLabel="#{f.description}" />
+			<f:ajax render="Article"/>
+		</h:selectOneMenu><br/>
+	Sous famille: <h:selectOneMenu value="#{editArticle.article.articleParent.id}" >
 			<f:selectItems value="#{editArticle.sFamilles}"
 							var="sf"
 			 				itemValue="#{sf.id}"
-			 				itemLabel="#{sf.nom}" />
-		</h:selectOneMenu><br />
-	</c:if>
-	Nom de la famille d'article: <h:inputText value="#{editArticle.article.nom}"/>
-	Description de la famille d'article: <h:inputText value="#{editArticle.article.nom}"/>
+			 				itemLabel="#{sf.description}" />
+		</h:selectOneMenu><br/>
+	Nom de l'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+	Description de l'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+</h:panelGroup>
+<h:panelGroup id="SFamille" rendered="#{editArticle.type eq 'SFamille'}">
+	Famille: <h:selectOneMenu value="#{editArticle.article.articleParent.Id}" >
+			<f:selectItems value="#{editArticle.familles}"
+							var="f"
+			 				itemValue="#{f.id}"
+			 				itemLabel="#{f.description}" />
+		</h:selectOneMenu><br/>
+	Nom de la sous famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+	Description de la sous famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+</h:panelGroup>
+<h:panelGroup id="Famille" rendered="#{editArticle.type eq 'Famille'}">
+	Nom de la famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+	Description de la famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+</h:panelGroup>
 </table>
+<h:commandButton value="sauver" action="#{editArticle.saveArticle}"/>
 </h:form>
 </div>
 <hr style="margin-top: 100px"/>

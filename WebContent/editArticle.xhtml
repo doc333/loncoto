@@ -25,28 +25,30 @@
 			 				itemLabel="#{f.description}" />
 			<f:ajax render="Article"/>
 		</h:selectOneMenu><br/>
-	Sous famille: <h:selectOneMenu value="#{editArticle.article.articleParent.id}" >
+	Sous famille: <h:selectOneMenu value="#{editArticle.articleParentID}" >
 			<f:selectItems value="#{editArticle.sFamilles}"
 							var="sf"
 			 				itemValue="#{sf.id}"
 			 				itemLabel="#{sf.description}" />
 		</h:selectOneMenu><br/>
 	Nom de l'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
-	Description de l'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+	Description de l'article: <h:inputText value="#{editArticle.article.description}"/><br/>
 </h:panelGroup>
+
 <h:panelGroup id="SFamille" rendered="#{editArticle.type eq 'SFamille'}">
-	Famille: <h:selectOneMenu value="#{editArticle.article.articleParent.Id}" >
+	Famille: <h:selectOneMenu value="#{editArticle.articleParentID}" >
 			<f:selectItems value="#{editArticle.familles}"
 							var="f"
 			 				itemValue="#{f.id}"
 			 				itemLabel="#{f.description}" />
 		</h:selectOneMenu><br/>
 	Nom de la sous famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
-	Description de la sous famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+	Description de la sous famille d'article: <h:inputText value="#{editArticle.article.description}"/><br/>
 </h:panelGroup>
+
 <h:panelGroup id="Famille" rendered="#{editArticle.type eq 'Famille'}">
 	Nom de la famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
-	Description de la famille d'article: <h:inputText value="#{editArticle.article.nom}"/><br/>
+	Description de la famille d'article: <h:inputText value="#{editArticle.article.description}"/><br/>
 </h:panelGroup>
 </table>
 <h:commandButton value="sauver" action="#{editArticle.saveArticle}"/>

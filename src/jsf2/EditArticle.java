@@ -12,6 +12,16 @@ import utils.IArticleDAO;
 @Component
 @ManagedBean
 public class EditArticle {
+	private int articleParentID;
+	
+	
+	public int getArticleParentID() {
+		return articleParentID;
+	}
+	public void setArticleParentID(int articleParentID) {
+		this.articleParentID = articleParentID;
+	}
+
 	private IArticleDAO articleDAO;
 	public IArticleDAO getArticleDAO() {return articleDAO;}
 	public void setArticleDAO(IArticleDAO articleDAO) {this.articleDAO = articleDAO;}
@@ -72,6 +82,12 @@ public class EditArticle {
 	}
 	
 	public String saveArticle() {
+		if(getType() == "Famille") {
+			setArticleParentID(0);
+		}
+		if(getArticleParentID() != 0){
+			article.setArticleParent(articleDAO.findById(getArticleParentID()));
+		}
 		getArticleDAO().save(article);
 		return "listArticle";
 	}

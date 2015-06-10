@@ -21,9 +21,12 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 	
 	@Transactional
 	public Utilisateur findByEmailAndPassword(String email, String password) {
-		return em.createQuery("SELECT * FROM utilisateur as u "
-				+ "WHERE email =:email "
-				+ "AND password =:password", Utilisateur.class)
+		
+		System.out.println("dzeiofizeofjorze");
+		
+		return em.createQuery("SELECT u FROM Utilisateur as u "
+				+ "WHERE u.email =:email "
+				+ "AND u.password =:password", Utilisateur.class)
 				.setParameter("email", email)
 				.setParameter("password", DigestUtils.sha512Hex(password))
 				.getSingleResult()

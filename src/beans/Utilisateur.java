@@ -4,8 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(
+	uniqueConstraints=@UniqueConstraint(columnNames = { "email" })
+)
 public class Utilisateur {
 	private int id;
 	private String email;
@@ -41,6 +46,7 @@ public class Utilisateur {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getEmail() {
 		return email;
 	}

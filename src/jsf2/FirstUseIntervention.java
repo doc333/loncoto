@@ -1,15 +1,13 @@
 package jsf2;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Component;
 
-import utils.ArticleDAO;
 import utils.IArticleDAO;
 import utils.IBatimentDAO;
 import utils.IClientDAO;
@@ -43,6 +41,7 @@ public class FirstUseIntervention {
 	private List<Intervenant> intervenants;
 	private List<Materiel> materiels;
 	private List<Article> articles;
+	private List<Batiment> batiments;
 	
 	public IArticleDAO getArticleDAO() {return articleDAO;}
 	public void setArticleDAO(IArticleDAO articleDAO) {	this.articleDAO = articleDAO;}
@@ -72,6 +71,8 @@ public class FirstUseIntervention {
 		statuts = new ArrayList<Statut>();
 		salles = new ArrayList<Salle>();
 		intervenants = new ArrayList<Intervenant>();
+		articles = new ArrayList<Article>();
+		batiments = new ArrayList<Batiment>();
 		
 		Statut s1 = new Statut();
 		s1.setLabel("En cours");
@@ -88,10 +89,7 @@ public class FirstUseIntervention {
 		statuts.add(s2);
 		statuts.add(s3);
 		
-		
-		
-		
-		for(int i = 1; i < 4; i++)
+		for(int i = 1; i < 3; i++)
 		{
 			Client c = new Client();
 			c.setCodeClient(String.valueOf(i));
@@ -99,10 +97,11 @@ public class FirstUseIntervention {
 			
 			c = getClientDAO().save(c);
 			
-			for(int j = 0; j < 4; j++)
+			for(int j = 0; j < 3; j++)
 			{
 				Site si = new Site();
 				si.setLatitude(String.valueOf(getRandomNumber(-100, 100)));
+				si.setLongitude(String.valueOf(getRandomNumber(-100, 100)));
 				si.setClient(c);
 				si = getSiteDAO().save(si);
 				
@@ -110,15 +109,14 @@ public class FirstUseIntervention {
 				{
 					Batiment b = new Batiment();
 					b.setSite(si);
-					b.setCodeBatiment(String.valueOf(k));
+					b.setCodeBatiment("Batiment " + (batiments.size() + 1));
 					b = getBatimentDAO().save(b);
-					
-					
+					batiments.add(b);
 					for(int l = 0; l < getRandomNumber(1, 7); l++)
 					{
 						Etage e = new Etage();
 						e.setBatiment(b);
-						e.setCodeEtage(String.valueOf(l));
+						e.setCodeEtage(b.getCodeBatiment() + " Etage " + String.valueOf(l));
 						
 						e = getEtageDAO().save(e);
 						
@@ -126,7 +124,7 @@ public class FirstUseIntervention {
 						{
 							Salle s = new Salle();
 							s.setEtage(e);
-							s.setCodeSalle(String.valueOf(m));
+							s.setCodeSalle(e.getCodeEtage() + " Salle " + String.valueOf(m));
 							
 							s = getSalleDAO().save(s);
 							salles.add(s);
@@ -153,13 +151,17 @@ public class FirstUseIntervention {
 		
 		generateMateriels();
 		
-		for(int i = 0; i <= 100; i++)
+		for(int i = 0; i <= 50; i++)
 		{
 			Intervention intervention = new Intervention();
 			intervention.setIntervenant(intervenants.get(getRandomNumber(intervenants.size() - 1)));
 			intervention.setMateriel(materiels.get(getRandomNumber(materiels.size() - 1)));
 			intervention.setCodeIntervention("Intervention " + i);
 			intervention.setStatut(statuts.get(getRandomNumber(0, statuts.size() - 1)));
+			
+			intervention.setDatePrevu(randomDate());
+			intervention.setDateReel(randomDate());
+			
 			intervention = getInterventionDAO().save(intervention);
 		}
 		
@@ -241,5 +243,25 @@ public class FirstUseIntervention {
 		}
 	}
 	
+	
+	
+	
+	
+    public Date randomDate() {
+
+        GregorianCalendar gc = new GregorianCalendar();
+
+        int year = getRandomNumber(2012, 2015);
+
+        gc.set(gc.YEAR, year);
+
+        int dayOfYear = getRandomNumber(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+
+        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+
+        System.out.println(gc.get(gc.YEAR) + "-" + gc.get(gc.MONTH) + "-" + gc.get(gc.DAY_OF_MONTH));
+
+		return gc.getTime();
+    }
 	
 }

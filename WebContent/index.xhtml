@@ -36,13 +36,13 @@
 </table>
 
 
-<c:if test="${'#{listIntervention.interventions}' == 'null'}">
+<!-- <c:if test="${'#{listIntervention.interventions}' == 'null'}"> -->
 	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}"/>
-</c:if>
-<c:otherwise>
+<!-- </c:if> -->
+<!-- <c:otherwise> -->
 	<h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/>
 	<h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/>
-</c:otherwise>
+<!-- </c:otherwise> -->
 
 </h:form>
 </div>

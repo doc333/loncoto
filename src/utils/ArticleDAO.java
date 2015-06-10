@@ -58,7 +58,7 @@ public class ArticleDAO implements IArticleDAO {
 		TypedQuery<Article> q = em.createQuery("select ae from Article as a"
 				+ " left join a.articleEnfant as ae"
 				+ " where a.id = :id", Article.class);
-		q.setParameter(id, ":id");
+		q.setParameter("id", id);
 		return q.getResultList();
 	}
 

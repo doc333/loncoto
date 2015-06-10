@@ -15,6 +15,19 @@
 <b>Administration des interventions</b> 
 </p>
 <div align="center">
+
+<p>Email: ${utilisateur.email}</p>
+
+<h:form>
+	<h:inputText name="email" value="#{connectUtilisateur.email}"/>
+	<h:inputSecret name="password" value="#{connectUtilisateur.password}"/>
+	
+	<h:commandButton value="Se connecter" action="#{connectUtilisateur.connect}"/>
+	<br/>	 
+	<h:commandButton value="Se déconnecter" action="#{connectUtilisateur.disconnect}"/>
+	<br/>	
+</h:form>
+
 <h:form>
 
 

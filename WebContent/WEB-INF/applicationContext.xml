@@ -54,6 +54,7 @@
 <bean id="batimentDAO" class="utils.BatimentDAO" />
 <bean id="siteDAO" class="utils.SiteDAO" />
 <bean id="etageDAO" class="utils.EtageDAO" />
+<bean id="utilisateurDAO" class="utils.UtilisateurDAO" />
 
 <tx:annotation-driven transaction-manager="transactionManager" />
 

@@ -33,6 +33,15 @@
 
 <h:commandButton value="Liste matériels" action="listMateriel"/><br/>
 <h:commandButton value="Liste sites" action="listSite"/><br/>
+<h:commandButton value="Lister les articles" action="#{tableArticle.tableArticle}">
+	<f:param name="type" value="Article" />
+</h:commandButton>
+<h:commandButton value="Lister les sous familles d'articles" action="#{tableArticle.tableArticle}">
+	<f:param name="type" value="SFamille" />
+</h:commandButton>
+<h:commandButton value="Lister les familles d'articles" action="#{tableArticle.tableArticle}">
+	<f:param name="type" value="Famille" />
+</h:commandButton><br/>
 <table border="1" >
 	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
 	<ui:repeat var="i"  value="#{listIntervention.interventions}">

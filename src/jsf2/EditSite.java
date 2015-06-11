@@ -19,34 +19,18 @@ public class EditSite {
 	private int siteID;
 	private ISiteDAO siteDAO;
 	private IClientDAO clientDAO;
-	private List<Client> listClient;
+	private List<Client> clients;
 	private Site site;
 	
 	
-	public IClientDAO getClientDAO() {
-		return clientDAO;
-	}
-	public void setClientDAO(IClientDAO clientDAO) {
-		this.clientDAO = clientDAO;
-	}
-	public int getSiteID() {
-		return siteID;
-	}
-	public void setSiteID(int siteID) {
-		this.siteID = siteID;
-	}
-	public ISiteDAO getSiteDAO() {
-		return siteDAO;
-	}
-	public void setSiteDAO(ISiteDAO siteDAO) {
-		this.siteDAO = siteDAO;
-	}
-	public List<Client> getListClient() {
-		return clientDAO.findAll();
-	}
-	public void setListClient(List<Client> listClient) {
-		this.listClient = listClient;
-	}
+	public IClientDAO getClientDAO() {return clientDAO;}
+	public void setClientDAO(IClientDAO clientDAO) {this.clientDAO = clientDAO;}
+	public int getSiteID() {return siteID;}
+	public void setSiteID(int siteID) {	this.siteID = siteID;}
+	public ISiteDAO getSiteDAO() {return siteDAO;}
+	public void setSiteDAO(ISiteDAO siteDAO) {this.siteDAO = siteDAO;}
+	public List<Client> getClients() {return clientDAO.findAll();}
+	public void setClients(List<Client> clients) {this.clients = clients;}
 	
 	public String saveSite() {
 		getSiteDAO().save(site);

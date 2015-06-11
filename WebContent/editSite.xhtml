@@ -18,10 +18,9 @@
 <h:inputHidden value="#{editSite.site.id}" />
 Longitude : <h:inputText value="#{editSite.site.longitude}"/><br />
 Latitude : <h:inputText value="#{editSite.site.latitude}"/><br />
-
-Client : <h:selectOneMenu value="#{editSite.site.client.id}">
-	<f:selectItems value="#{editSite.listClient}" var="c" itemValue="#{c.id}" itemLabel="#{c.nom}" />
-</h:selectOneMenu><br/>
+Clients : <h:selectManyListbox value="#{editSite.site.clients}">
+	<f:selectItems value="#{editSite.clients}" var="c" itemLabel="#{c.nom}" itemValue="#{c.id}" />
+</h:selectManyListbox>
 
 <h:commandButton value="sauver" action="#{editSite.saveSite}" />
 </h:form>

@@ -23,7 +23,11 @@
 	<tr>
 		<td>#{s.latitude}</td>
 		<td>#{s.longitude}</td>
-		<td>#{s.client.nom}</td>
+		<td>
+			<ui:repeat var="cl" value="#{s.clients}">
+				#{cl.nom} | 
+			</ui:repeat>
+		</td>
 		<td>
 			<h:commandButton value="editer" action="#{editSite.editSite}">
 				<f:param name="sid" value="#{s.id}" />

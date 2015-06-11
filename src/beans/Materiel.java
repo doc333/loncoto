@@ -18,7 +18,7 @@ public class Materiel {
 	private Client client;
 	private Set<Intervention> interventions;
 		
-	@OneToMany
+	@OneToMany(mappedBy="materiel")
 	public Set<Intervention> getInterventions() {
 		if(interventions == null){
 			interventions = new HashSet<Intervention>();

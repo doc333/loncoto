@@ -74,6 +74,9 @@ public class Client {
 		}
 		return sites;
 	}
+	public void addSite(Site site) {
+		this.sites.add(site);
+	}
 	public void setSites(Set<Site> sites) {
 		this.sites = sites;
 	}

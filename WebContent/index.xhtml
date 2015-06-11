@@ -20,6 +20,7 @@
 <p>Email: ${utilisateur.email}</p>
 
 <h:form>
+	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/><br/>
 	<h:inputText name="email" value="#{connectUtilisateur.email}"/>
 	<h:inputSecret name="password" value="#{connectUtilisateur.password}"/>
 	
@@ -68,9 +69,6 @@
 	</ui:repeat>
 </table>
 
-
-
-<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/>
 <h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
 <h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
 <h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>

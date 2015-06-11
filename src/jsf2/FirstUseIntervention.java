@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+
 import org.springframework.stereotype.Component;
 
 import utils.IArticleDAO;
@@ -18,6 +19,7 @@ import utils.IMaterielDAO;
 import utils.ISalleDAO;
 import utils.ISiteDAO;
 import utils.IStatutDAO;
+import utils.IUtilisateurDAO;
 import beans.*;
 
 @Component
@@ -35,6 +37,7 @@ public class FirstUseIntervention {
 	private IBatimentDAO batimentDAO;
 	private ISiteDAO siteDAO;
 	private IEtageDAO etageDAO;
+	private IUtilisateurDAO utilisateurDAO;
 	
 	private List<Statut> statuts;
 	private List<Salle> salles;
@@ -63,10 +66,20 @@ public class FirstUseIntervention {
 	public void setSiteDAO(ISiteDAO siteDAO) {this.siteDAO = siteDAO;}
 	public IEtageDAO getEtageDAO() {return etageDAO;}
 	public void setEtageDAO(IEtageDAO etageDAO) {this.etageDAO = etageDAO;}
+	public void setUtilisateurDAO(IUtilisateurDAO utilisateurDAO){ this.utilisateurDAO = utilisateurDAO; }
+	public IUtilisateurDAO getUtilisateurDAO(){ return utilisateurDAO; }	
+	
 	
 	public String generateInterventions()
 	{
 		System.out.println("génération");
+		
+		
+		Utilisateur u = new Utilisateur();
+		u.setEmail("admin@loncoto.com");
+		u.setPassword("password");
+		
+		getUtilisateurDAO().save(u);
 		
 		statuts = new ArrayList<Statut>();
 		salles = new ArrayList<Salle>();
@@ -151,7 +164,7 @@ public class FirstUseIntervention {
 		
 		generateMateriels();
 		
-		for(int i = 0; i <= 50; i++)
+		for(int i = 0; i <= 322; i++)
 		{
 			Intervention intervention = new Intervention();
 			intervention.setIntervenant(intervenants.get(getRandomNumber(intervenants.size() - 1)));
@@ -188,7 +201,7 @@ public class FirstUseIntervention {
 		
 		for(Article a: articles)
 		{
-			for(int i = 0; i < getRandomNumber(1, 20); i++)
+			for(int i = 0; i < getRandomNumber(1, 10); i++)
 			{
 				Materiel m = new Materiel();
 				m.setArticle(a);

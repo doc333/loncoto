@@ -17,8 +17,6 @@
 
 <div align="center">
 
-<p>Email: ${utilisateur.email}</p>
-
 <h:form>
 	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/><br/>
 	<h:inputText name="email" value="#{connectUtilisateur.email}"/>
@@ -28,10 +26,22 @@
 	<br/>	 
 	<h:commandButton value="Se déconnecter" action="#{connectUtilisateur.disconnect}"/>
 	<br/>	
+
+	<h:panelGroup rendered="#{empty utilisateur}">	
+		<h:inputText name="email" value="#{connectUtilisateur.email}"/>
+		<h:inputSecret name="password" value="#{connectUtilisateur.password}"/>
+		
+		<h:commandButton value="Se connecter" action="#{connectUtilisateur.connect}"/>
+	</h:panelGroup>
+	<h:panelGroup rendered="#{not empty utilisateur}">
+		<p>Email: ${utilisateur.email}</p>
+		<h:commandButton value="Se déconnecter" action="#{connectUtilisateur.disconnect}"/>
+	<br/>
+	</h:panelGroup>
+>>>>>>> branch 'master' of https://github.com/doc333/loncoto.git
 </h:form>
 
-<h:form>
-
+<h:form rendered="#{not empty utilisateur}">
 <h:commandButton value="Liste matériels" action="listMateriel"/><br/>
 <h:commandButton value="Liste sites" action="listSite"/><br/>
 <h:commandButton value="Lister les articles" action="#{tableArticle.tableArticle}">
@@ -74,6 +84,9 @@
 <h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
 <h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
 <h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
+</h:form>
+<h:form>
+	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/>
 </h:form>
 </div>
 <hr style="margin-top: 100px"/>

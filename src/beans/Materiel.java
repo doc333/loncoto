@@ -15,6 +15,7 @@ public class Materiel {
 	private String numSerie;
 	private Article article;
 	private Salle salle;
+	private Client client;
 	private Set<Intervention> interventions;
 		
 	@OneToMany
@@ -36,17 +37,18 @@ public class Materiel {
 	}
 	
 	public Materiel(){
-		this(0, "", new Article(), new Salle(), new HashSet<Intervention>());
+		this(0, "", new Article(), new Salle(), new Client(), new HashSet<Intervention>());
 	}
 	
 	
 	public Materiel(int id, String numSerie, Article article, Salle salle,
-			Set<Intervention> interventions) {
+			Client client, Set<Intervention> interventions) {
 		super();
 		this.id = id;
 		this.numSerie = numSerie;
 		this.article = article;
 		this.salle = salle;
+		this.client = client;
 		this.interventions = interventions;
 	}
 	
@@ -68,6 +70,15 @@ public class Materiel {
 	public Salle getSalle() {
 		return salle;
 	}
+	@ManyToOne
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public void setSalle(Salle salle) {
 		this.salle = salle;
 	}

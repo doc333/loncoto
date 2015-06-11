@@ -31,8 +31,7 @@ public class Site {
 
 	@Override
 	public String toString() {
-		return "Site [id=" + id + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", client=" + client + "]";
+		return latitude + ":" + longitude;
 	}
 	
 	public Site(){

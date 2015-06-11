@@ -43,10 +43,19 @@
 	<f:param name="type" value="Famille" />
 </h:commandButton><br/>
 <table border="1" >
-	<tr><th>Numero intervention</th><th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
+	<tr><th>Numero intervention</th><th>Intervenant</th><th>Materiel</th>
+	<th>Site</th><th>Batiment</th><th>Etage</th><th>Salle</th><th>Client</th>
+	<th>Date prévue</th><th>Status</th><th>Commentaire</th><th>Actions</th></tr>
 	<ui:repeat var="i"  value="#{listIntervention.interventions}">
 	<tr>
 		<td>#{i.codeIntervention}</td>
+		<td>#{i.intervenant.nom}</td>
+		<td>#{i.materiel.numSerie}</td>
+		<td>#{i.materiel.salle.etage.batiment.site}</td>
+		<td>#{i.materiel.salle.etage.batiment.codeBatiment}</td>
+		<td>#{i.materiel.salle.etage.codeEtage}</td>
+		<td>#{i.materiel.salle.codeSalle}</td>
+		<td>#{i.materiel.client.nom}</td>
 		<td>#{i.datePrevu}</td>
 		<td>#{i.statut.label}</td>
 		<td>#{i.commentaire}</td>

@@ -16,24 +16,65 @@
 </p>
 <div align="center">
 <h:form>
+<h:commandButton value="Lister les articles" action="#{tableArticle.tableArticle}" rendered="#{tableArticle.type != 'Article'}">
+	<f:param name="type" value="Article" />
+</h:commandButton>
+<h:commandButton value="Lister les sous familles d'articles" action="#{tableArticle.tableArticle}" rendered="#{tableArticle.type != 'SFamille'}">
+	<f:param name="type" value="SFamille" />
+</h:commandButton>
+<h:commandButton value="Lister les familles d'articles" action="#{tableArticle.tableArticle}" rendered="#{tableArticle.type != 'Famille'}">
+	<f:param name="type" value="Famille" />
+</h:commandButton><br/>
 <table border="1" >
-	<tr><th>Nom</th><th>Description</th><th>Parent</th><th>Actions</th></tr>
-	<ui:repeat var="a"  value="#{tableArticle.articles}">
-	<tr>
-		<td>#{a.nom}</td>
-		<td>#{a.description}</td>
-		<td>#{a.articleParent.description}</td>
-		<td>
-			<h:commandButton value="editer" action="#{editArticle.editArticle}">
-				<f:param name="aid" value="#{a.id}" />
-			</h:commandButton>
-		</td>
-	</tr>
-	</ui:repeat>
+	<h:panelGroup id="Article" rendered="#{tableArticle.type eq 'Article'}">
+		<tr><th>Nom</th><th>Description</th><th>Sous famille</th><th>Famille</th><th>Actions</th></tr>
+		<ui:repeat var="a"  value="#{tableArticle.articles}">
+		<tr>
+			<td>#{a.nom}</td>
+			<td>#{a.description}</td>
+			<td>#{a.articleParent.description}</td>
+			<td>#{a.articleParent.articleParent.description}</td>
+			<td>
+				<h:commandButton value="editer" action="#{editArticle.editArticle}">
+					<f:param name="aid" value="#{a.id}" />
+				</h:commandButton>
+			</td>
+		</tr>
+		</ui:repeat>
+	</h:panelGroup>
+	<h:panelGroup id="SFamille" rendered="#{tableArticle.type eq 'SFamille'}">
+		<tr><th>Nom</th><th>Description</th><th>Famille</th><th>Actions</th></tr>
+		<ui:repeat var="a"  value="#{tableArticle.articles}">
+		<tr>
+			<td>#{a.nom}</td>
+			<td>#{a.description}</td>
+			<td>#{a.articleParent.description}</td>
+			<td>
+				<h:commandButton value="editer" action="#{editArticle.editArticle}">
+					<f:param name="aid" value="#{a.id}" />
+				</h:commandButton>
+			</td>
+		</tr>
+		</ui:repeat>
+	</h:panelGroup>
+	<h:panelGroup id="Famille" rendered="#{tableArticle.type eq 'Famille'}">
+		<tr><th>Nom</th><th>Description</th><th>Actions</th></tr>
+		<ui:repeat var="a"  value="#{tableArticle.articles}">
+		<tr>
+			<td>#{a.nom}</td>
+			<td>#{a.description}</td>
+			<td>
+				<h:commandButton value="editer" action="#{editArticle.editArticle}">
+					<f:param name="aid" value="#{a.id}" />
+				</h:commandButton>
+			</td>
+		</tr>
+		</ui:repeat>
+	</h:panelGroup>
 </table>
-	<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
-	<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
-	<h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
+	<h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}" rendered="#{tableArticle.type eq 'Famille'}"/>
+	<h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}" rendered="#{tableArticle.type eq 'SFamille'}"/>
+	<h:commandButton value="Creer un article" action="#{editArticle.createArticle}" rendered="#{tableArticle.type eq 'Article'}"/><br/>
 </h:form>
 </div>
 <hr style="margin-top: 100px"/>

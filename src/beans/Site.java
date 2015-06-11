@@ -17,7 +17,7 @@ public class Site {
 	private Set<Client> clients;
 	private Set<Batiment> batiments;
 	
-	@OneToMany
+	@OneToMany(mappedBy="site")
 	public Set<Batiment> getBatiments() {
 		if(batiments == null){
 			batiments = new HashSet<Batiment>();

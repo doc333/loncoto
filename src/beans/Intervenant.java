@@ -17,7 +17,7 @@ public class Intervenant {
 	
 	
 	@JsonIgnore
-	@OneToMany
+	@OneToMany(mappedBy="intervenant")
 	public Set<Intervention> getInterventions() {
 		if(interventions == null){
 			interventions = new HashSet<Intervention>();

@@ -18,7 +18,7 @@ public class Batiment {
 	private Set<Etage> etages;
 	
 	@JsonIgnore
-	@OneToMany
+	@OneToMany(mappedBy="batiment")
 	public Set<Etage> getEtages() {
 		if(etages == null){
 			etages = new HashSet<Etage>();

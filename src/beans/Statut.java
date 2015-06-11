@@ -45,7 +45,7 @@ public class Statut {
 		this.label = label;
 	}
 	
-	@OneToMany
+	@OneToMany(mappedBy="statut")
 	public Set<Intervention> getInterventions() {
 		if(interventions == null){
 			interventions = new HashSet<Intervention>();

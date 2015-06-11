@@ -40,5 +40,14 @@ public class InterventionDAO implements IInterventionDAO {
 		}
 		return intervention;
 	}
+	@Transactional
+	public List<Intervention> findPage(int page) {
+		return em.createQuery("from Intervention", Intervention.class).setFirstResult(page * 25).setMaxResults(25).getResultList();
+	}
+	
+	@Transactional
+	public long countInterventions() {
+		return (long) em.createQuery("SELECT COUNT(*) FROM Intervention").getSingleResult();
+	}
 
 }

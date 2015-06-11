@@ -18,7 +18,7 @@ public class Utilisateur {
 	private Intervenant intervenant;
 	
 	public Utilisateur(){
-		this(0, "", "", new Intervenant());
+		this(0, "", "", null);
 	}
 	
 	public Utilisateur(int id, String email, String password, Intervenant intervenant) {

@@ -53,14 +53,16 @@
 
 
 
-<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/>
+
 <h:commandButton value="Ajouter intervention" action="#{editIntervention.createIntervention}"/><br/>
 <h:commandButton value="Creer un matériel" action="#{editMateriel.createMateriel}"/><br/>
 <h:commandButton value="Creer une famille d'article" action="#{editArticle.createFamille}"/>
 <h:commandButton value="Creer une sous famille d'article" action="#{editArticle.createSFamille}"/>
 <h:commandButton value="Creer un article" action="#{editArticle.createArticle}"/><br/>
 </h:form>
-
+<h:form>
+	<h:commandButton value="Générer interventions" action="#{firstUseIntervention.generateInterventions}" rendered="#{empty listIntervention.interventions}"/>
+</h:form>
 </div>
 <hr style="margin-top: 100px"/>
 </h:body></html>

@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -14,7 +14,7 @@ public class Site {
 	private int id;
 	private String latitude;
 	private String longitude;
-	private Client client;
+	private Set<Client> clients;
 	private Set<Batiment> batiments;
 	
 	@OneToMany
@@ -35,17 +35,17 @@ public class Site {
 	}
 	
 	public Site(){
-		this(0, "", "", new Client(), new HashSet<Batiment>());
+		this(0, "", "", new HashSet<Client>(), new HashSet<Batiment>());
 	}
 	
 	
-	public Site(int id, String latitude, String longitude, Client client,
+	public Site(int id, String latitude, String longitude, Set<Client> clients,
 			Set<Batiment> batiments) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.client = client;
+		this.clients = clients;
 		this.batiments = batiments;
 	}
 	
@@ -68,12 +68,13 @@ public class Site {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	@ManyToOne
-	public Client getClient() {
-		return client;
+	@ManyToMany(mappedBy="sites")
+	public Set<Client> getClients() {
+		return clients;
 	}
-	public void setClient(Client client) {
-		this.client = client;
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
 	}
 	
 	

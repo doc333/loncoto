@@ -40,6 +40,7 @@ public class FirstUseIntervention {
 	private IUtilisateurDAO utilisateurDAO;
 	
 	private List<Statut> statuts;
+	private List<Site> sites;
 	private List<Salle> salles;
 	private List<Client> clients;
 	private List<Intervenant> intervenants;
@@ -84,6 +85,7 @@ public class FirstUseIntervention {
 		
 		statuts = new ArrayList<Statut>();
 		salles = new ArrayList<Salle>();
+		sites = new ArrayList<Site>();
 		clients = new ArrayList<Client>();
 		intervenants = new ArrayList<Intervenant>();
 		articles = new ArrayList<Article>();
@@ -104,52 +106,59 @@ public class FirstUseIntervention {
 		statuts.add(s2);
 		statuts.add(s3);
 		
+		for(int j = 0; j < 3; j++)
+		{
+			Site si = new Site();
+			si.setLatitude(String.valueOf(getRandomNumber(-100, 100)));
+			si.setLongitude(String.valueOf(getRandomNumber(-100, 100)));
+			si = getSiteDAO().save(si);
+			sites.add(si);
+			
+			for(int k = 0; k < 3; k++)
+			{
+				Batiment b = new Batiment();
+				b.setSite(si);
+				b.setCodeBatiment("Batiment " + (batiments.size() + 1));
+				b = getBatimentDAO().save(b);
+				batiments.add(b);
+				for(int l = 0; l < getRandomNumber(1, 7); l++)
+				{
+					Etage e = new Etage();
+					e.setBatiment(b);
+					e.setCodeEtage(b.getCodeBatiment() + " Etage " + String.valueOf(l));
+					
+					e = getEtageDAO().save(e);
+					
+					for(int m = 0; m < getRandomNumber(1, 30); m++)
+					{
+						Salle s = new Salle();
+						s.setEtage(e);
+						s.setCodeSalle(e.getCodeEtage() + " Salle " + String.valueOf(m));
+						
+						s = getSalleDAO().save(s);
+						salles.add(s);
+					}
+				}
+			}			
+			
+		}
+	
+		
 		for(int i = 1; i <= 3; i++)
 		{
 			Client c = new Client();
 			c.setCodeClient(String.valueOf(i));
 			c.setNom("Girard" + i);
 			
+			for (int j = 0; j < getRandomNumber(3); j++) {
+				Site s = sites.get(getRandomNumber(sites.size()));
+				if (!c.getSites().contains(s)) {
+					c.addSite(s);
+				}
+			}
+			
 			c = getClientDAO().save(c);
 			clients.add(c);
-			
-			for(int j = 0; j < 3; j++)
-			{
-				Site si = new Site();
-				si.setLatitude(String.valueOf(getRandomNumber(-100, 100)));
-				si.setLongitude(String.valueOf(getRandomNumber(-100, 100)));
-				si.setClient(c);
-				si = getSiteDAO().save(si);
-				
-				for(int k = 0; k < 3; k++)
-				{
-					Batiment b = new Batiment();
-					b.setSite(si);
-					b.setCodeBatiment("Batiment " + (batiments.size() + 1));
-					b = getBatimentDAO().save(b);
-					batiments.add(b);
-					for(int l = 0; l < getRandomNumber(1, 7); l++)
-					{
-						Etage e = new Etage();
-						e.setBatiment(b);
-						e.setCodeEtage(b.getCodeBatiment() + " Etage " + String.valueOf(l));
-						
-						e = getEtageDAO().save(e);
-						
-						for(int m = 0; m < getRandomNumber(1, 30); m++)
-						{
-							Salle s = new Salle();
-							s.setEtage(e);
-							s.setCodeSalle(e.getCodeEtage() + " Salle " + String.valueOf(m));
-							
-							s = getSalleDAO().save(s);
-							salles.add(s);
-						}
-					}
-				}			
-				
-			}
-		
 		}
 		
 		

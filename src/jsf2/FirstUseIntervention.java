@@ -104,7 +104,7 @@ public class FirstUseIntervention {
 		statuts.add(s2);
 		statuts.add(s3);
 		
-		for(int i = 1; i < 3; i++)
+		for(int i = 1; i <= 3; i++)
 		{
 			Client c = new Client();
 			c.setCodeClient(String.valueOf(i));
@@ -170,10 +170,10 @@ public class FirstUseIntervention {
 		for(int i = 0; i <= 322; i++)
 		{
 			Intervention intervention = new Intervention();
-			intervention.setIntervenant(intervenants.get(getRandomNumber(intervenants.size() - 1)));
-			intervention.setMateriel(materiels.get(getRandomNumber(materiels.size() - 1)));
+			intervention.setIntervenant(intervenants.get(getRandomNumber(intervenants.size())));
+			intervention.setMateriel(materiels.get(getRandomNumber(materiels.size())));
 			intervention.setCodeIntervention("Intervention " + i);
-			intervention.setStatut(statuts.get(getRandomNumber(0, statuts.size() - 1)));
+			intervention.setStatut(statuts.get(getRandomNumber(0, statuts.size())));
 			
 			intervention.setDatePrevu(randomDate());
 			intervention.setDateReel(randomDate());
@@ -208,9 +208,9 @@ public class FirstUseIntervention {
 			{
 				Materiel m = new Materiel();
 				m.setArticle(a);
-				m.setClient(clients.get(getRandomNumber(clients.size() - 1)));
+				m.setClient(clients.get(getRandomNumber(clients.size())));
 				m.setNumSerie(String.valueOf(getRandomNumber(1, 1000)));
-				m.setSalle(salles.get(getRandomNumber(salles.size() - 1)));
+				m.setSalle(salles.get(getRandomNumber(salles.size())));
 				m = getMaterielDAO().save(m);
 				materiels.add(m);
 			}

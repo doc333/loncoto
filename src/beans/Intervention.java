@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Intervention {
 	private int id;
@@ -71,7 +73,7 @@ public class Intervention {
 	public void setDateReel(Date dateReel) {
 		this.dateReel = dateReel;
 	}
-	@ManyToOne
+	@ManyToOne @JsonIgnore
 	public Statut getStatut() {
 		return statut;
 	}
@@ -85,14 +87,14 @@ public class Intervention {
 		this.commentaire = commentaire;
 	}
 	
-	@ManyToOne
+	@ManyToOne @JsonIgnore
 	public Materiel getMateriel() {
 		return materiel;
 	}
 	public void setMateriel(Materiel materiel) {
 		this.materiel = materiel;
 	}
-	@ManyToOne
+	@ManyToOne @JsonIgnore
 	public Intervenant getIntervenant() {
 		return intervenant;
 	}

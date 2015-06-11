@@ -41,6 +41,7 @@ public class FirstUseIntervention {
 	
 	private List<Statut> statuts;
 	private List<Salle> salles;
+	private List<Client> clients;
 	private List<Intervenant> intervenants;
 	private List<Materiel> materiels;
 	private List<Article> articles;
@@ -83,6 +84,7 @@ public class FirstUseIntervention {
 		
 		statuts = new ArrayList<Statut>();
 		salles = new ArrayList<Salle>();
+		clients = new ArrayList<Client>();
 		intervenants = new ArrayList<Intervenant>();
 		articles = new ArrayList<Article>();
 		batiments = new ArrayList<Batiment>();
@@ -109,6 +111,7 @@ public class FirstUseIntervention {
 			c.setNom("Girard" + i);
 			
 			c = getClientDAO().save(c);
+			clients.add(c);
 			
 			for(int j = 0; j < 3; j++)
 			{
@@ -205,6 +208,7 @@ public class FirstUseIntervention {
 			{
 				Materiel m = new Materiel();
 				m.setArticle(a);
+				m.setClient(clients.get(getRandomNumber(clients.size() - 1)));
 				m.setNumSerie(String.valueOf(getRandomNumber(1, 1000)));
 				m.setSalle(salles.get(getRandomNumber(salles.size() - 1)));
 				m = getMaterielDAO().save(m);

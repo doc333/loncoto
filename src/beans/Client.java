@@ -34,7 +34,7 @@ public class Client {
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", codeClient=" + codeClient + ", nom="
-				+ nom + ", sites=" + sites + "]";
+				+ nom + "]";
 	}
 	
 	@Id @GeneratedValue

@@ -1,9 +1,12 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -14,7 +17,7 @@ public class Site {
 	private int id;
 	private String latitude;
 	private String longitude;
-	private Set<Client> clients;
+	private List<Client> clients;
 	private Set<Batiment> batiments;
 	
 	@OneToMany(mappedBy="site")
@@ -35,18 +38,16 @@ public class Site {
 	}
 	
 	public Site(){
-		this(0, "", "", new HashSet<Client>(), new HashSet<Batiment>());
+		this(0, "", "", new ArrayList<Client>());
 	}
 	
 	
-	public Site(int id, String latitude, String longitude, Set<Client> clients,
-			Set<Batiment> batiments) {
+	public Site(int id, String latitude, String longitude, List<Client> clients) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.clients = clients;
-		this.batiments = batiments;
 	}
 	
 	@Id @GeneratedValue
@@ -68,12 +69,12 @@ public class Site {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	@ManyToMany(mappedBy="sites")
-	public Set<Client> getClients() {
+	@ManyToMany(mappedBy="sites", fetch=FetchType.EAGER)
+	public List<Client> getClients() {
 		return clients;
 	}
 
-	public void setClients(Set<Client> clients) {
+	public void setClients(List<Client> clients) {
 		this.clients = clients;
 	}
 	

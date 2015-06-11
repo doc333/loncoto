@@ -75,7 +75,7 @@
 </h:panelGroup>
 
 <p>
-<c:forEach begin="1" end="#{listIntervention.nbInterventions / 25}" var="key">
+<c:forEach begin="1" end="#{listIntervention.nbPagesInterventions}" var="key">
 	<h:commandLink value="#{key}" action="#{listIntervention.getInterventionsForPage}">
 		<f:param name="page" value="#{key - 1}" />
 		<f:ajax render="pageInterventions"/>

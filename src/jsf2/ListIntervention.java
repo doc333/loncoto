@@ -15,7 +15,7 @@ import utils.IInterventionDAO;
 public class ListIntervention {
 	private IInterventionDAO interventionDAO;
 	private List<Intervention> interventions;
-	private long nbInterventions = 0;
+	private long nbPagesInterventions = -1;
 	
 	public IInterventionDAO getInterventionDAO() {
 		return interventionDAO;
@@ -28,13 +28,14 @@ public class ListIntervention {
 		this.interventions = interventions;
 	}
 	
-	public long getNbInterventions()
+	public long getNbPagesInterventions()
 	{
-		if(nbInterventions == 0)
+		if(nbPagesInterventions == -1)
 		{
-			nbInterventions = getInterventionDAO().countInterventions();
+			nbPagesInterventions = Math.round(getInterventionDAO().countInterventions() / (float) 25);
 		}
-		return nbInterventions;
+		
+		return nbPagesInterventions;
 	}
 	public List<Intervention> getInterventions() {
 		

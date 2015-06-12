@@ -1,6 +1,7 @@
 package jsf2;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -8,7 +9,6 @@ import javax.faces.context.FacesContext;
 import org.springframework.stereotype.Component;
 
 import beans.Client;
-import beans.Site;
 import beans.Site;
 import utils.IClientDAO;
 import utils.ISiteDAO;
@@ -19,7 +19,7 @@ public class EditSite {
 	private int siteID;
 	private ISiteDAO siteDAO;
 	private IClientDAO clientDAO;
-	private List<Client> clients;
+	private Set<Client> clients;
 	private Site site;
 	
 	
@@ -30,7 +30,9 @@ public class EditSite {
 	public ISiteDAO getSiteDAO() {return siteDAO;}
 	public void setSiteDAO(ISiteDAO siteDAO) {this.siteDAO = siteDAO;}
 	public List<Client> getClients() {return clientDAO.findAll();}
-	public void setClients(List<Client> clients) {this.clients = clients;}
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
+		}
 	
 	public String saveSite() {
 		getSiteDAO().save(site);

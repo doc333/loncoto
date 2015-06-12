@@ -3,6 +3,7 @@ package beans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -67,7 +68,7 @@ public class Client {
 	}
 
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	public Set<Site> getSites() {
 		if(sites == null){
 			sites = new HashSet<Site>();

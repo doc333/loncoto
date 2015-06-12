@@ -81,10 +81,17 @@ public class Intervenant {
 	
 	public static boolean commonGroupe(Intervenant i1, Intervenant i2)
 	{
+		
+		if(i1.getId() == i2.getId())
+		{
+			return true;
+		}		
+		
 		if(i1.getGroupes().isEmpty() || i2.getGroupes().isEmpty())
 		{
 			return false;
 		}
+		
 		Object[] grps1 = i1.getGroupes().toArray();
 		Object[] grps2 = i2.getGroupes().toArray();
 		int i = 0;

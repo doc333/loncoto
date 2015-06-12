@@ -53,7 +53,7 @@ public class InterventionRest {
 		Intervention intervention = getInterventionDAO().findById(id);
 		Intervenant i = utilisateur.getIntervenant();
 		
-		return intervention.getIntervenant().getId() == i.getId() || Intervenant.commonGroupe(intervention.getIntervenant(), i) ? intervention : null;
+		return Intervenant.commonGroupe(intervention.getIntervenant(), i) ? intervention : null;
 	}
 	
 	@RequestMapping("/intervention/{token}/{interventionId}")
@@ -62,7 +62,7 @@ public class InterventionRest {
 		Intervention intervention = getInterventionDAO().findById(id);
 		Intervenant i = utilisateur.getIntervenant();
 		
-		return intervention.getIntervenant().getId() == i.getId() || Intervenant.commonGroupe(intervention.getIntervenant(), i) ? intervention : null;
+		return Intervenant.commonGroupe(intervention.getIntervenant(), i) ? intervention : null;
 	}
 	
 }

@@ -69,7 +69,7 @@ public class Site {
 		this.longitude = longitude;
 	}
 	
-	@ManyToMany(mappedBy="sites", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="sites", fetch=FetchType.EAGER)
 	public Set<Client> getClients() {
 		return clients;
 	}

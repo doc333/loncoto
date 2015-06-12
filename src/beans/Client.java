@@ -68,7 +68,7 @@ public class Client {
 	}
 
 	@JsonIgnore
-	@ManyToMany(cascade=CascadeType.PERSIST)
+	@ManyToMany()
 	public Set<Site> getSites() {
 		if(sites == null){
 			sites = new HashSet<Site>();

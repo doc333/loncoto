@@ -55,6 +55,7 @@
 				<f:param name="page" value="#{key - 1}" />
 				<f:ajax render="pageInterventions" />
 		   </h:commandLink>
+		   <h:outputText value="-" rendered="#{key != listIntervention.nbPagesInterventions}" />
 		</c:forEach>
 		</p>
 		

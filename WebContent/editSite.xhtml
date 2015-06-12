@@ -12,7 +12,7 @@
 		<h:inputHidden value="#{editSite.site.id}" />
 		Longitude : <h:inputText value="#{editSite.site.longitude}"/><br />
 		Latitude : <h:inputText value="#{editSite.site.latitude}"/><br />
-		Clients : <h:selectManyListbox value="#{editSite.site.clients}">
+		Clients : <h:selectManyListbox value="#{editSite.site.clients}" collectionType="java.util.ArrayList" >
 			<f:selectItems value="#{editSite.clients}" var="c" itemLabel="#{c.nom}" itemValue="#{c.id}" />
 		</h:selectManyListbox>
 		

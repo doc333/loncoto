@@ -32,7 +32,7 @@ public class EditSite {
 	public List<Client> getClients() {return clientDAO.findAll();}
 	public void setClients(Set<Client> clients) {
 		this.clients = clients;
-		}
+	}
 	
 	public String saveSite() {
 		getSiteDAO().save(site);

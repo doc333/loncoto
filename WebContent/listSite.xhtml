@@ -7,7 +7,7 @@
       template="/template/myTemplate.xhtml">
       
     <ui:define name="title">Administration des sites</ui:define>
-	<ui:define name="form">
+		<ui:define name="form">
 		<table border="1" >
 			<tr><th>Latitude</th><th>Longitude</th><th>Client</th><th>Actions</th></tr>
 			<ui:repeat var="s"  value="#{tableSites.sites}">
@@ -16,7 +16,7 @@
 				<td>#{s.longitude}</td>
 				<td>
 					<ui:repeat var="cl" value="#{s.clients}">
-						#{cl.nom} | 
+						#{cl.nom}
 					</ui:repeat>
 				</td>
 				<td>
@@ -26,6 +26,6 @@
 				</td>
 			</tr>
 			</ui:repeat>
-		</table>
-	</ui:define>
+			</table>
+		</ui:define>
 </ui:composition>

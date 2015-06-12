@@ -1,6 +1,8 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,7 +18,7 @@ public class Site {
 	private int id;
 	private String latitude;
 	private String longitude;
-	private Set<Client> clients;
+	private List<Client> clients;
 	private Set<Batiment> batiments;
 	
 	@OneToMany(mappedBy="site")
@@ -37,11 +39,11 @@ public class Site {
 	}
 	
 	public Site(){
-		this(0, "", "", new HashSet<Client>());
+		this(0, "", "", new ArrayList<Client>());
 	}
 	
 	
-	public Site(int id, String latitude, String longitude, Set<Client> clients) {
+	public Site(int id, String latitude, String longitude, List<Client> clients) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
@@ -69,12 +71,12 @@ public class Site {
 		this.longitude = longitude;
 	}
 	
-	@ManyToMany(mappedBy="sites", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	public Set<Client> getClients() {
+	@ManyToMany(mappedBy="sites", fetch=FetchType.EAGER)
+	public List<Client> getClients() {
 		return clients;
 	}
 
-	public void setClients(Set<Client> clients) {
+	public void setClients(List<Client> clients) {
 		this.clients = clients;
 	}
 	

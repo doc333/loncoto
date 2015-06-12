@@ -25,18 +25,16 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 		
 		String query = "SELECT u FROM Utilisateur as u ";
 				if(isIntervenant){
-					query += "WHERE u.intervenant IS NOT NULL";
+					query += "WHERE u.intervenant IS NOT NULL ";
 				}
 				else {
-					query += "WHERE u.intervenant IS NULL";
+					query += "WHERE u.intervenant IS NULL ";
 				}
-				query += "AND u.email =:email "
+				query += "AND lower(u.email) = lower(:email) "
 				+ "AND u.password =:password";
 		
 		
-		return em.createQuery("SELECT u FROM Utilisateur as u "
-				+ "WHERE u.email =:email "
-				+ "AND u.password =:password", Utilisateur.class)
+		return em.createQuery(query, Utilisateur.class)
 				.setParameter("email", email)
 				.setParameter("password", DigestUtils.sha512Hex(password))
 				.getSingleResult()

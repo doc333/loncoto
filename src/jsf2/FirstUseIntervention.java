@@ -175,6 +175,14 @@ public class FirstUseIntervention {
 			intervenant = getIntervenantDAO().save(intervenant);
 			
 			intervenants.add(intervenant);
+			
+			Utilisateur utilisateur = new Utilisateur();
+			utilisateur.setEmail("IBM" + i + "@ibm.com");
+			utilisateur.setPassword("password");
+			utilisateur.setIntervenant(intervenant);
+			getUtilisateurDAO().save(utilisateur);			
+			
+			
 		}
 		
 		

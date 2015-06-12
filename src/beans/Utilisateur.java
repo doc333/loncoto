@@ -1,23 +1,22 @@
 package beans;
 
+import java.util.UUID;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
-@Table(
-	uniqueConstraints=@UniqueConstraint(columnNames = { "email" })
-)
 public class Utilisateur {
 	private int id;
 	private String email;
 	private String password;
 	private Intervenant intervenant;
+	private String token;
 	
 	public Utilisateur(){
 		this(0, "", "", null);
@@ -45,9 +44,11 @@ public class Utilisateur {
 		this.id = id;
 	}
 	
+	@Column(unique = true)
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -57,12 +58,27 @@ public class Utilisateur {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Column(unique = true)
+	public String getToken(){
+		return token;
+	}
+	
+	public void setToken(String token){
+		this.token = token;
+	}
+	
 	@OneToOne @JsonIgnore
 	public Intervenant getIntervenant() {
 		return intervenant;
 	}
 	public void setIntervenant(Intervenant intervenant) {
 		this.intervenant = intervenant;
+	}
+
+	public void generateToken() {
+		this.setToken(UUID.randomUUID().toString());
+		
 	}
 	
 	

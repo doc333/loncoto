@@ -1,5 +1,6 @@
 package beans;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -78,6 +79,36 @@ public class Intervenant {
 		this.groupes = groupes;
 	}
 	
-	
+	public static boolean commonGroupe(Intervenant i1, Intervenant i2)
+	{
+		
+		if(i1.getId() == i2.getId())
+		{
+			return true;
+		}		
+		
+		if(i1.getGroupes().isEmpty() || i2.getGroupes().isEmpty())
+		{
+			return false;
+		}
+		
+		Object[] grps1 = i1.getGroupes().toArray();
+		Object[] grps2 = i2.getGroupes().toArray();
+		int i = 0;
+		boolean commonGroupe = false;
+		
+		
+		while(i < grps1.length && !commonGroupe)
+		{
+			int j = 0;
+			while(j < grps2.length && !commonGroupe){
+				commonGroupe = grps1[i] == grps2[j];
+				j++;
+			}
+			i++;
+		}
+		
+		return commonGroupe;
+	}
 	
 }

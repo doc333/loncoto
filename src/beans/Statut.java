@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Statut {
 	private int id;
@@ -16,8 +18,7 @@ public class Statut {
 	
 	@Override
 	public String toString() {
-		return "Statut [id=" + id + ", label=" + label + ", interventions="
-				+ interventions + "]";
+		return "Statut [id=" + id + ", label=" + label + "]";
 	}
 
 	public Statut(){

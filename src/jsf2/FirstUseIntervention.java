@@ -143,12 +143,16 @@ public class FirstUseIntervention {
 			
 		}
 	
+		List<String> nomClient = new ArrayList<String>();
+		nomClient.add("Girard");
+		nomClient.add("Mangold");
+		nomClient.add("Nguyen");
 		
 		for(int i = 1; i <= 3; i++)
 		{
 			Client c = new Client();
 			c.setCodeClient(String.valueOf(i));
-			c.setNom("Girard" + i);
+			c.setNom(nomClient.get(i-1));
 			
 			for (int j = 0; j < getRandomNumber(3); j++) {
 				Site s = sites.get(getRandomNumber(sites.size()));

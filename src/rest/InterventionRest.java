@@ -48,12 +48,21 @@ public class InterventionRest {
 	
 	@RequestMapping("/intervention/{token}")
 	public @ResponseBody Intervention findIntervention(@RequestParam(value="cid", defaultValue="1") int id, @PathVariable("token") String token) {
-		return getInterventionDAO().findById(id);
+		
+		Utilisateur utilisateur = getUtilisateurDAO().findByToken(token);
+		Intervention intervention = getInterventionDAO().findById(id);
+		Intervenant i = utilisateur.getIntervenant();
+		
+		return intervention.getIntervenant().getId() == i.getId() || Intervenant.commonGroupe(intervention.getIntervenant(), i) ? intervention : null;
 	}
 	
 	@RequestMapping("/intervention/{token}/{interventionId}")
 	public @ResponseBody Intervention findIntervention2(@PathVariable("token") String token, @PathVariable("interventionId") int id) {
-		return getInterventionDAO().findById(id);
+		Utilisateur utilisateur = getUtilisateurDAO().findByToken(token);
+		Intervention intervention = getInterventionDAO().findById(id);
+		Intervenant i = utilisateur.getIntervenant();
+		
+		return intervention.getIntervenant().getId() == i.getId() || Intervenant.commonGroupe(intervention.getIntervenant(), i) ? intervention : null;
 	}
 	
 }

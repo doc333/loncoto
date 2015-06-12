@@ -21,7 +21,19 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 	}	
 	
 	@Transactional
-	public Utilisateur findByEmailAndPassword(String email, String password) {
+	public Utilisateur findByEmailAndPassword(String email, String password, boolean isIntervenant) {
+		
+		String query = "SELECT u FROM Utilisateur as u ";
+				if(isIntervenant){
+					query += "WHERE u.intervenant IS NOT NULL";
+				}
+				else {
+					query += "WHERE u.intervenant IS NULL";
+				}
+				query += "AND u.email =:email "
+				+ "AND u.password =:password";
+		
+		
 		return em.createQuery("SELECT u FROM Utilisateur as u "
 				+ "WHERE u.email =:email "
 				+ "AND u.password =:password", Utilisateur.class)

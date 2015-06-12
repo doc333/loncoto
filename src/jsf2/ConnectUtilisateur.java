@@ -44,7 +44,7 @@ public class ConnectUtilisateur {
 	public String connect()
 	{
 		try{
-			utilisateur = getUtilisateurDAO().findByEmailAndPassword(email, password);
+			utilisateur = getUtilisateurDAO().findByEmailAndPassword(email, password, false);
 		}
 		catch (NoResultException e) {
 			return "index";

@@ -24,7 +24,7 @@ public class UtilisateurRest {
 	@RequestMapping("/connection/{email}/{password}")
 	public @ResponseBody Utilisateur findUtilisateur(@PathVariable("email") String email, @PathVariable("password") String password)
 	{
-		Utilisateur utilisateur = getUtilisateurDAO().findByEmailAndPassword(email, password);
+		Utilisateur utilisateur = getUtilisateurDAO().findByEmailAndPassword(email, password, true);
 		utilisateur.generateToken();
 		
 		getUtilisateurDAO().save(utilisateur);

@@ -54,13 +54,11 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 
 	@Transactional
 	public Utilisateur save(Utilisateur utilisateur) {
-		
-		utilisateur.setPassword(DigestUtils.sha512Hex(utilisateur.getPassword()));
-		
 		if (utilisateur.getId() > 0) {
 			utilisateur = em.merge(utilisateur);
 		}
 		else {
+			utilisateur.setPassword(DigestUtils.sha512Hex(utilisateur.getPassword()));
 			em.persist(utilisateur);
 		}
 		return utilisateur;

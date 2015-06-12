@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.transaction.annotation.Transactional;
 
+import beans.Batiment;
 import beans.Utilisateur;
 
 public class UtilisateurDAO implements IUtilisateurDAO {
@@ -21,9 +22,6 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 	
 	@Transactional
 	public Utilisateur findByEmailAndPassword(String email, String password) {
-		
-		System.out.println("dzeiofizeofjorze");
-		
 		return em.createQuery("SELECT u FROM Utilisateur as u "
 				+ "WHERE u.email =:email "
 				+ "AND u.password =:password", Utilisateur.class)
@@ -32,6 +30,17 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 				.getSingleResult()
 		;
 	}
+	
+	@Transactional
+	public Utilisateur findByToken(String token) {
+		return em.createQuery("SELECT u from Utilisateur as u "
+				+ "LEFT JOIN FETCH u.intervenant as i "
+				+ "LEFT JOIN FETCH i.groupes as g "
+				+ "LEFT JOIN FETCH i.interventions inter "
+				+ "LEFT JOIN FETCH inter.statut s "
+				+ "LEFT JOIN FETCH s.interventions i2 "
+				+ "WHERE u.token = :token", Utilisateur.class).setParameter("token", token).getSingleResult();
+	}	
 
 	@Transactional
 	public Utilisateur save(Utilisateur utilisateur) {

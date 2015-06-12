@@ -11,7 +11,7 @@ import utils.IMaterielDAO;
 
 @Component
 @ManagedBean
-public class TableMateriel {
+public class tableMateriel {
 	private IMaterielDAO materielDAO;
 	private List<Materiel> materiels;
 	

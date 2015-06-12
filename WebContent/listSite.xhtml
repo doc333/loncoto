@@ -24,7 +24,7 @@
 		<td>#{s.latitude}</td>
 		<td>#{s.longitude}</td>
 		<td>
-			<ui:repeat var="cl" value="#{s.clients}">
+			<ui:repeat var="cl" value="#{s.clients.toArray()}">
 				#{cl.nom} | 
 			</ui:repeat>
 		</td>

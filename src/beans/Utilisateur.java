@@ -7,6 +7,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(
 	uniqueConstraints=@UniqueConstraint(columnNames = { "email" })
@@ -55,7 +57,7 @@ public class Utilisateur {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@OneToOne
+	@OneToOne @JsonIgnore
 	public Intervenant getIntervenant() {
 		return intervenant;
 	}
